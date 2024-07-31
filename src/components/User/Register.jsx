@@ -26,7 +26,7 @@ export default function Register() {
     <FormControl sx={{ width: "80%" }}>
       <Alerts alert={alert} handleCloseAlert={handleCloseAlert} />
       <h3 className="my-4 text-2xl font-extrabold">Create an Account</h3>
-      {signUp.map((input) => (
+      {signUp?.map((input) => (
         <Box sx={{ textAlign: "left", mt: 0, mb: 1 }} key={input.id}>
           <FormLabel
             htmlFor={input.Placeholder}
@@ -75,7 +75,7 @@ export default function Register() {
           label="Choose a country"
           onChange={handleCountry}
         >
-          {countries.map((country, index) => (
+          {countries?.map((country, index) => (
             <MenuItem value={country.label} key={index}>
               {country.label}
             </MenuItem>

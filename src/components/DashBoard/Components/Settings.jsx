@@ -41,7 +41,7 @@ export default function Settings() {
               //   justifyContent: "space-between",
             }}
           >
-            {dashBoardItems.map((item, index) => (
+            {dashBoardItems?.map((item, index) => (
               <Box
                 sx={{
                   display: "flex",
@@ -192,7 +192,7 @@ export default function Settings() {
               //   justifyContent: "space-between",
             }}
           >
-            {dashBoardItems.map((item, index) => (
+            {dashBoardItems?.map((item, index) => (
               <Box
                 sx={{
                   display: "flex",

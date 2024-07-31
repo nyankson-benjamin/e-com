@@ -69,7 +69,7 @@ export default function Menu() {
         )}
 
         {dashBoardMenu &&
-          dashBoardMenu.map((item, index) => (
+          dashBoardMenu?.map((item, index) => (
             <Box key={index}>
               {screenWidth > 600 ? (
                 <Box sx={{ p: 3 }}>

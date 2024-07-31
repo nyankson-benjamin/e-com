@@ -13,7 +13,7 @@ function ProductList({ product }) {
     <div >
       {/* <AppsBar /> */}
       {/* {data &&
-        data?.products.map((products) => (
+        data?.products?.map((products) => (
           <p key={products.id}>{products.title}</p>
         ))} */}
 

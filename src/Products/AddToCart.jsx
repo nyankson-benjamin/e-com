@@ -176,7 +176,7 @@ export default function AddToCart({ product }) {
               }}
             />
             <Box sx={{ display: "flex" }}>
-              {product.images.map((img, index) => (
+              {product.images?.map((img, index) => (
                 <img
                   src={img}
                   key={index}
@@ -282,7 +282,7 @@ export default function AddToCart({ product }) {
               }}
             />
             <Box sx={{ display: "flex" }}>
-              {product.images.map((img, index) => (
+              {product.images?.map((img, index) => (
                 <img
                   src={img}
                   key={index}

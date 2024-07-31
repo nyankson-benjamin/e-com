@@ -42,7 +42,7 @@ export default function Dashboard() {
               //   justifyContent: "space-between",
             }}
           >
-            {dashBoardItems.map((item, index) => (
+            {dashBoardItems?.map((item, index) => (
               <Box
                 sx={{
                   display: "flex",
@@ -193,7 +193,7 @@ export default function Dashboard() {
               //   justifyContent: "space-between",
             }}
           >
-            {dashBoardItems.map((item, index) => (
+            {dashBoardItems?.map((item, index) => (
               <Box
                 sx={{
                   display: "flex",

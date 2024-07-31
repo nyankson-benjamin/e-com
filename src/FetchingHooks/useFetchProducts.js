@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { API } from "../Services/api";
 
-function getUniqueCategories(products) {
-  const categories = products.map(product => product?.category);
-   (localStorage.setItem("categories",JSON.stringify([...new Set(categories)])));
-}
 export default function useFetchProducts(url="") {
   const [data, setData] = useState();
   const [isLoading, setisLoading] = useState(false);
   const [error, setError] = useState("")
+  function getUniqueCategories(products) {
+    const categories = products?.map(product => product?.category);
+     (localStorage.setItem("categories",JSON.stringify([...new Set(categories)])));
+  }
   useEffect(() => {
     const fetch = async () => {
       try {

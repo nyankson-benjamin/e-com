@@ -86,7 +86,7 @@ function Desktop({ search, handleChange, handleLogOut, ItemCategory, categories 
         {/* <Searchitem search={search} handleChange={handleChange} /> */}
         {isLoggedIn && <CartLength user={user} />}
 
-        {page.map((page) => (
+        {page?.map((page) => (
           <Button
             sx={navLinkStyle}
             color="inherit"
@@ -194,7 +194,7 @@ function Desktop({ search, handleChange, handleLogOut, ItemCategory, categories 
             open={Boolean(category)}
             onClose={() => setCategory(null)}
           >
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <Link to={`/categories/${category}`} key={category}>
                 <MenuItem>
                   <Typography textAlign="center" className="capitalize">{category}</Typography>

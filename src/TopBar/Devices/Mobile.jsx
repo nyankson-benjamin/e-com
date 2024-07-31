@@ -118,7 +118,7 @@ function Mobile({ categories }) {
             open={Boolean(category)}
             onClose={() => setCategory(null)}
           >
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <MenuItem
                 key={category}
                 onClick={() => navigate(`/categories/${category}`)}
@@ -150,7 +150,7 @@ function Mobile({ categories }) {
             display: { xs: "block", md: "none" },
           }}
         >
-          {page.map((page) => (
+          {page?.map((page) => (
             <MenuItem key={page.id} onClick={handleCloseNavMenu}>
               <Typography
                 textAlign="center"
