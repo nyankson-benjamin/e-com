@@ -5,4 +5,4 @@
 3. Intuitive User Interface: A clean and intuitive interface that allows users to easily navigate, search, and shop.
 4. Secure Checkout: Secure and efficient checkout process to provide a smooth purchasing experience.
 
-This project highlights my expertise in building scalable, responsive, and user-centric web applications. You can explore the live <link>site here</link> site here.
+This project highlights my expertise in building scalable, responsive, and user-centric web applications. You can explore the live [Duck Duck Go](https://duckduckgo.com "The best search engine for privacy").
