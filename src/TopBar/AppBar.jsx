@@ -47,8 +47,8 @@ const categories = JSON.parse(localStorage.getItem("categories"))
             </IconButton>
 {
   screenWidth>900 && <div className="flex items-center mr-3">
-    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Shop
+    <Typography variant="h6" className="whitespace-nowrap" component="div" sx={{ flexGrow: 1 }}>
+                E-Shop
               </Typography>
 
   </div>

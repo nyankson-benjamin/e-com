@@ -77,7 +77,6 @@ function Desktop({ search, handleChange, handleLogOut, ItemCategory, categories 
         sx={{ flexGrow: 1, textAlign: "left" }}
         className="whitespace-nowrap"
       >
-        {ItemCategory}
       </Typography>
       <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
