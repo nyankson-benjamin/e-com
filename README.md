@@ -5,4 +5,4 @@
 3. Intuitive User Interface: A clean and intuitive interface that allows users to easily navigate, search, and shop.
 4. Secure Checkout: Secure and efficient checkout process to provide a smooth purchasing experience.
 
-This project highlights my expertise in building scalable, responsive, and user-centric web applications. You can explore the live [Site here]("https://e-com-three-tan.vercel.app/").
+This project highlights my expertise in building scalable, responsive, and user-centric web applications. You can explore the live [Site here](https://e-com-three-tan.vercel.app/).
