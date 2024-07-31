@@ -1,0 +1,142 @@
+{
+  "Cart": [
+    {
+      "item": "iPhone X",
+      "img_link": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 4,
+      "unitPrice": 737.7194,
+      "totalPrice": 2950.88,
+      "id": 1
+    }
+  ],
+  "Users": [
+    {
+      "fname": "Kwesi",
+      "lname": "ee",
+      "email": "benjamin.nyankson@amalitech.com",
+      "contact": "1111",
+      "password": "11111111",
+      "confirmPass": "11111111",
+      "otp": "",
+      "country": "Alland Islands",
+      "isVerified": true,
+      "role": "admin",
+      "isAdmin": false,
+      "id": 1
+    },
+    {
+      "fname": "Benjamin",
+      "lname": "ee",
+      "email": "benjamin.nyankson@amalitech.com",
+      "contact": "1111",
+      "password": "11111111",
+      "confirmPass": "11111111",
+      "otp": "",
+      "country": "Alland Islands",
+      "isVerified": false,
+      "role": "user",
+      "isAdmin": false,
+      "id": 2
+    }
+  ],
+  "Sales": [
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "price": 1055.9,
+      "item": "Samsung Universe 9",
+      "image": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+      "quantity": 1,
+      "id": 4
+    },
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 5
+    },
+    {
+      "price": 1055.9,
+      "item": "Samsung Universe 9",
+      "image": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+      "quantity": 1,
+      "id": 6
+    },
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 7
+    },
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "price": 1055.9,
+      "item": "Samsung Universe 9",
+      "image": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+      "quantity": 1,
+      "id": 4
+    },
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 5
+    },
+    {
+      "price": 1055.9,
+      "item": "Samsung Universe 9",
+      "image": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+      "quantity": 1,
+      "id": 6
+    },
+    {
+      "price": 737.72,
+      "item": "iPhone X",
+      "image": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "quantity": 1,
+      "id": 7
+    }
+  ]
+}

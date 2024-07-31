@@ -1,0 +1,72 @@
+.card-slider {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    margin: auto;
+    text-align: center;
+    border-radius: 20px;
+  }
+  
+  .card-slider-inner {
+    display: flex;
+    transition: transform 0.5s ease-out;
+  }
+  
+  .cardSlider {
+    flex: 1 0 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    /* width: 100%; */
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    /* min-width: 100px; */
+    height: 300px;
+    text-align: center;
+    /* border-radius: 10px; */
+    color: rgb(167, 166, 166);
+    padding: 20px;
+    font-weight: bold;
+  }
+  
+  .cardSlider img {
+    /* width: 80%; */
+    /* height: 300px; */
+    border-radius: 20px;
+  }
+  .swipe-left,
+  .swipe-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .swipe-left {
+    left: 1rem;
+  }
+  
+  .swipe-right {
+    right: 1rem;
+  }
+  
+  .swipe-right:hover {
+    display: flex;
+  }
+  
+  .card image:hover {
+    width: 200px;
+  }
+  

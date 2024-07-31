@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  .card {
+    margin: 10px;
+    min-width: 100px;
+    height: 200px;
+    text-align: center;
+    border-radius: 10px;
+    color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-weight: bold;
+  }
+
+  
+  a {
+    text-decoration: none;
+    color: #282c34;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .smImages {
+    margin: 1px;
+  }
+  .smImages:hover {
+    border: 2px solid red;
+    border-radius: 5px;
+  }
+  
+  .bigImage:hover {
+    width: "200px";
+  }
+  
+  .productCard:hover {
+    transform: scale(1.01);
+  }
+  
+  .check {
+    animation: moveCheck 1s ease-in-out;
+  }
+  
+  @keyframes moveCheck {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+
+  
+  .seperator {
+    width: 100%;
+  }
+  
+  .controls-wrapper {
+    width: 100%;
+  }
+  
+  .carousel-wrapper {
+    width: 100%;
+  }
+  
+  .rec-carousel-item:focus {
+    outline: none;
+    box-shadow: inset 0 0 1px 0px violet;
+  }
+  
+  .otp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    margin: auto;
+    margin-top: 20%;
+  }
+  .otp input {
+
+    gap: 8px;
+    text-align: center;
+    background-color: #ffff;
+    border-radius: 8px;
+    border: 1px solid #d0d5dd;
+    font-size: 48px;
+    font-weight: 500;
+    color: #d0d5dd;
+  }
+  

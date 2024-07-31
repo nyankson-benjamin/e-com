@@ -1,0 +1,96 @@
+export const events = [
+  {
+    id: 1,
+    evntName: "page_view",
+    eventCount: 34,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+
+  {
+    id: 2,
+    evntName: "user_engagement",
+    eventCount: 34,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+
+  {
+    id: 3,
+    evntName: "pageView",
+    eventCount: 32,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+
+  {
+    id: 4,
+    evntName: "formStart",
+    eventCount: 38,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+  {
+    id: 4,
+    evntName: "scroll",
+    eventCount: 38,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+  {
+    id: 4,
+    evntName: "menuItemClick",
+    eventCount: 38,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+  {
+    id: 4,
+    evntName: "scroll",
+    eventCount: 38,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+  {
+    id: 4,
+    evntName: "scroll",
+    eventCount: 38,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+  {
+    id: 4,
+    evntName: "scroll",
+    eventCount: 38,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+  {
+    id: 4,
+    evntName: "scroll",
+    eventCount: 38,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+  {
+    id: 4,
+    evntName: "click",
+    eventCount: 38,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+  {
+    id: 4,
+    evntName: "login",
+    eventCount: 38,
+    totalUsers: 40,
+    eventCountPerUser: 54,
+  },
+  {
+    id: 4,
+    evntName: "signup",
+    eventCount: 38,
+    totalUsers: 35,
+    eventCountPerUser: 54,
+  },
+];
