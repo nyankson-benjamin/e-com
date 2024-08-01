@@ -5,11 +5,12 @@ import AppsBar from "../../TopBar/AppBar";
 import useUsers from "../../Hooks/useUsers";
 import useChangePass from "../../Hooks/useChangePass";
 import Alerts from "../Alert/Alerts";
+import { useSelector } from "react-redux";
+
 export default function ChangePass() {
   const [users] = useUsers();
-  const isLoggedIn = Boolean(localStorage.getItem("isLoggedIn"));
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn)
   const id = localStorage.getItem("id");
-  const user = users?.find((user) => user.id === Number(id));
   const navigate = useNavigate();
   const [handleChange, formData, error, handleSubmit, alert, handleCloseAlert] =
     useChangePass();

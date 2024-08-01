@@ -40,14 +40,14 @@ className="bg-white"
           <br />
 
           <Box sx={{ bgcolor: "#ffc801", mt: 1.5 }} className="flex items-center justify-center gap-3">
-            {product.images?.map((image) => (
+            {product.images?.map((img) => (
               <img
-                src={image}
-                key={image}
+                src={img}
+                key={img}
                 style={{ width: "50px", height: "50px", margin: "5px" }}
                 alt=""
-                onClick={()=>setImage(image)}
-                className="cursor-pointer"
+                onClick={()=>setImage(img)}
+                className={image === img ? "cursor-pointer border bg-white rounded-lg":"cursor-pointer hover:border rounded-lg"}
               />
             ))}
           </Box>

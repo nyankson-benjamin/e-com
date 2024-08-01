@@ -1,67 +1,36 @@
-import React from "react";
 import {
-  AppBar,
-  Toolbar,
   IconButton,
   Typography,
   Button,
   Stack,
   Box,
-  TextField,
   Tooltip,
   Menu,
   MenuItem,
 } from "@mui/material";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import MenuIcon from "@mui/icons-material/Menu";
 
-import { page, categories } from "../../Constants/constants";
+import { page, } from "../../Constants/constants";
 import { Link, useNavigate } from "react-router-dom";
 
 import { navLinkStyle } from "../../styles/Styles";
 import CartLength from "../../components/Cart/CartLength";
-import Searchitem from "../../components/Searchitem";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LockResetIcon from "@mui/icons-material/LockReset";
-import Alerts from "../../components/Alert/Alerts";
+import { useSelector } from "react-redux";
 
-function Desktop({ search, handleChange, handleLogOut, ItemCategory, categories }) {
+function Desktop({categories, logOut}) {
   const [category, setCategory] = useState(null);
   const [dashBoarditem, setDashBoarditem] = useState(null);
-  const [alert, setAlert] = useState({
-    open: false,
-    message: "",
-    severity: "",
-  });
+
   const navigate = useNavigate();
-  const isLoggedIn = Boolean(localStorage.getItem("isLoggedIn"));
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn)
 
-  const user = JSON.parse(localStorage.getItem("userDetails"));
-
-  const logOut = () => {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("userDetails");
-    setAlert({
-      open: true,
-      message: "Logout successfull",
-      severity: "success",
-    });
-    setTimeout(() => {
-      navigate("/login");
-    }, 3000);
-  };
-
-  const handleCloseAlert = (event, reason) => {
-    setAlert({
-      open: false,
-      message: "",
-      severity: "",
-    });
-  };
+const {user} = useSelector(state=>state.userDetails)
+ 
   return (
     <Box
       sx={{
@@ -70,7 +39,6 @@ function Desktop({ search, handleChange, handleLogOut, ItemCategory, categories 
         textTransform: "Capitalize",
       }}
     >
-      <Alerts alert={alert} handleCloseAlert={handleCloseAlert} />
       <Typography
         variant="h6"
         component="div"
@@ -149,7 +117,7 @@ function Desktop({ search, handleChange, handleLogOut, ItemCategory, categories 
 
                 <MenuItem>
                   <Button startIcon={<LogoutIcon />} onClick={logOut}>
-                    logouts
+                    logout
                   </Button>
                 </MenuItem>
               </Menu>

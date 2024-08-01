@@ -1,36 +1,28 @@
-import React from "react";
 import {
-  AppBar,
-  Toolbar,
   IconButton,
   Typography,
   Button,
   Stack,
   Box,
-  TextField,
   Tooltip,
   Menu,
   MenuItem,
 } from "@mui/material";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
-import { useState, useEffect } from "react";
+import { useState, } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useSelector } from "react-redux";
 
-import { page, categories } from "../../Constants/constants";
-import { Link, useNavigate } from "react-router-dom";
+import { page, } from "../../Constants/constants";
+import {  useNavigate } from "react-router-dom";
 
-import { navLinkStyle } from "../../styles/Styles";
 
 import CartLength from "../../components/Cart/CartLength";
-import useUsers from "../../Hooks/useUsers";
-import Searchitem from "../../components/Searchitem";
 import PersonIcon from "@mui/icons-material/Person";
-import { Search } from "@mui/icons-material";
 
 import LogoutIcon from "@mui/icons-material/Logout";
 import Alerts from "../../components/Alert/Alerts";
-function Mobile({ categories }) {
+function Mobile({ categories, logOut }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [category, setCategory] = useState(null);
   const navigate = useNavigate();
@@ -47,24 +39,10 @@ function Mobile({ categories }) {
     setAnchorElNav(null);
   };
 
-  const isLoggedIn = Boolean(localStorage.getItem("isLoggedIn"));
-  // if (localStorage.getItem("userDetails")) {
-  //   setUser(JSON.parse(localStorage.getItem("userDetails")));
-  // }
-  const user = JSON.parse(localStorage.getItem("userDetails"));
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn)
 
-  const logOut = () => {
-    localStorage.removeItem('isLoggedIn')
-    localStorage.removeItem("userDetails");
-    setAlert({
-      open: true,
-      message: "Logout successfull",
-      severity: "success",
-    });
-    setTimeout(() => {
-      navigate("/login");
-    }, 3000);
-  };
+  const {user} = useSelector(state=>state.userDetails)
+
 
   const handleCloseAlert = (event, reason) => {
     setAlert({
@@ -163,13 +141,20 @@ function Mobile({ categories }) {
           {isLoggedIn && user ? (
             <Box>
               <MenuItem onClick={handleCloseNavMenu}>
-                <LogoutIcon onClick={logOut} />
+                <button className="flex gap-2 bg-transparent" onClick={() => logOut()}>
+                <LogoutIcon/>
+              <p>Logout</p>
+
+              </button>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>{user.fname}</MenuItem>
             </Box>
           ) : (
-            <MenuItem onClick={handleCloseNavMenu}>
-              <PersonIcon onClick={() => navigate("/login")} />
+            <MenuItem onClick={handleCloseNavMenu}  >
+              <button className="flex gap-2 bg-transparent" onClick={() => navigate("/login")}>
+              <PersonIcon  /><p>Login</p>
+
+              </button>
             </MenuItem>
           )}
         </Menu>

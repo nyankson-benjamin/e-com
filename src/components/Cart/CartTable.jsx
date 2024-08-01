@@ -1,4 +1,3 @@
-import React from "react";
 import {
   TableContainer,
   Table,
@@ -11,28 +10,21 @@ import {
   ButtonGroup,
   IconButton,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useState, useEffect } from "react";
-import { API } from "../../Services/api";
 import useScreenWidth from "../../Hooks/useScreenWidth";
+import { useSelector } from "react-redux";
+import Header from "../typography/Header";
 
 export default function CartTable({ data, cart, handleDelete }) {
-  const [filt, setFilter] = useState("");
   const [screenWidth] = useScreenWidth();
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
-  const user = JSON.parse(localStorage.getItem("userDetails"));
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn)
 
-  // const carts = user?.cart;
-  // const totalAmount = [];
-
-  // carts?.forEach((element) => {
-  //   totalAmount.push(element.totalPrice);
-  // });
 
   return (
     <div style={{ margin: "10px " }}>
+      <Header text="My Cart"/>
       <br />
       {screenWidth > 600 ? (
         <TableContainer
