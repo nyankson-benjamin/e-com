@@ -7,13 +7,18 @@ import {
   Box,
 } from "@mui/material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-
+import { useDispatch, useSelector } from "react-redux";
 import useScreenWidth from "../Hooks/useScreenWidth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { updateLoginState } from "../store/slice/authSlice";
+import { setAlert } from "../store/slice/alertSlice";
+import { setUser } from "../store/slice/userSlice";
+import Alerts from "../components/Alert/Alerts";
 
 import Desktop from "./Devices/Desktop";
 import Mobile from "./Devices/Mobile";
 import Searchitem from "../components/Searchitem";
+import { useEffect } from "react";
 export default function AppsBar({
   ItemCategory,
   search,
@@ -21,9 +26,38 @@ export default function AppsBar({
   handleLogOut,
 }) {
   const [screenWidth] = useScreenWidth();
+  const alert = useSelector((state) => state.alert)
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn)
+
+  const dispatch = useDispatch()
+ const beforeLoginRoutes = ["/cart"]
+const route = useLocation()
+const logout = ()=>{
+dispatch(updateLoginState(false))
+dispatch(setUser({}))
+dispatch(setAlert(["success", "Logout successfull", true]))
+    setTimeout(() => {
+      navigate("/login");
+    }, 3000);
+
+}
+
+const handleCloseAlert = ()=>{
+dispatch(setAlert(["success", "Logout successfull", false]))
+
+}
+
 const categories = JSON.parse(localStorage.getItem("categories"))
   const navigate = useNavigate();
-  return (
+
+useEffect(()=>{
+beforeLoginRoutes?.forEach(item=>{
+  if(route.pathname===item && !isLoggedIn){
+    navigate("/")
+  }
+})
+},[beforeLoginRoutes, isLoggedIn, navigate, route])
+return (
     <Stack>
       <AppBar
         position="static"
@@ -34,6 +68,8 @@ const categories = JSON.parse(localStorage.getItem("categories"))
           textTransform: "capitalize",
         }}
       >
+              <Alerts alert={alert} handleCloseAlert={()=>handleCloseAlert()}/>
+
         <Toolbar>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton
@@ -73,13 +109,13 @@ const categories = JSON.parse(localStorage.getItem("categories"))
               <Desktop
                 search={search}
                 handleChange={handleChange}
-                handleLogOut={handleLogOut}
+                logOut={logout}
                 ItemCategory={ItemCategory}
                 categories={categories}
               />
             </>
           ) : (
-            <Mobile handleLogOut={handleLogOut} categories={categories} />
+            <Mobile logOut={logout} categories={categories} />
           )}
         </Toolbar>
       </AppBar>

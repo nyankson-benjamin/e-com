@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API } from "../Services/api";
+import {useDispatch } from 'react-redux'
+import { updateLoginState } from "../store/slice/authSlice";
+import { setUser } from "../store/slice/userSlice";
 
 export default function useLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(true);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
 
   const [alert, setAlert] = useState({
     open: false,
@@ -42,15 +48,16 @@ export default function useLogin() {
     try {
       setDisable(true);
       const response = await API.post("/user/login", { email, password });
-      localStorage.setItem("userDetails", JSON.stringify(response?.data?.data));
-      localStorage.setItem("isLoggedIn", true);
+      // localStorage.setItem("userDetails", JSON.stringify(response?.data?.data));
+      dispatch(setUser(response?.data?.data))
+      // localStorage.setItem("isLoggedIn", true);
+      dispatch(updateLoginState(true))
       setAlert({
         open: true,
         message: "Login successfull,",
         severity: "success",
       });
       setDisable(false);
-
       if (location) {
         setTimeout(() => {
           navigate(`${location.slice(21)}`);
@@ -82,7 +89,8 @@ export default function useLogin() {
     alert("hello");
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("userDetails");
-    navigate("/login");
+    dispatch(updateLoginState(false))
+    // navigate("/login");
   };
 
   const handleCloseAlert = (event, reason) => {

@@ -11,7 +11,6 @@ export default function Fragrances() {
   const { category } = useParams();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log("neknfkenfj");
     const fetch = async () => {
       setLoading(true);
       try {

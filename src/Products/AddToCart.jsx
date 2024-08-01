@@ -9,6 +9,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../Hooks/useCart";
 import Modals from "../components/Cart/Modals";
 import Alert from "../components/Alert/Alerts";
+import { useSelector } from "react-redux";
+
 export default function AddToCart({ product }) {
   const [image, setImage] = useState(product.thumbnail);
   const [screenWidth] = useScreenWidth();
@@ -58,11 +60,11 @@ export default function AddToCart({ product }) {
       (product.discountPercentage / 100) * product.price
     ).toFixed(2) * value;
   const location = window.location.href;
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn)
+  const {user} = useSelector(state=>state.userDetails)
   const products = data?.find((product) => product.item === cartItem.item);
   const handleAddToCart = async (e) => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-    const user = JSON.parse(localStorage.getItem("userDetails"));
 
     try {
       if (!isLoggedIn) {
@@ -120,7 +122,7 @@ export default function AddToCart({ product }) {
     const quantity = value;
     const totalPrice = price;
     const data = { totalPrice, quantity };
-    await API.patch("Cart/" + id, { ...data });
+    await API.put(`Cart/${3}`, { ...data });
   };
 
   const handleCloseAlert = (event, reason) => {
@@ -144,7 +146,7 @@ export default function AddToCart({ product }) {
           ItemValue={products.quantity}
           ItemPrice={products.totalPrice}
           Update={Update}
-          id={products.id}
+          id={product._id}
           item={products.item}
         />
       )}

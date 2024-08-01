@@ -1,17 +1,19 @@
 import { Avatar, Box } from "@mui/material";
 import { useEffect,  } from "react";
 import AppsBar from "../../TopBar/AppBar";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NotAuthorized from "../NotAuthorized";
+import { useSelector } from "react-redux";
+
 function UserDashBoard() {
-  const isLoggedIn = Boolean(localStorage.getItem("isLoggedIn"));
-  const user = JSON.parse(localStorage.getItem("userDetails"))
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn)
+  const {user} = useSelector(state=>state.userDetails)
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate]);
   return (
     <Box>
       <AppsBar />

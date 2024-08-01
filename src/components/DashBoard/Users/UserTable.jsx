@@ -31,7 +31,6 @@ export default function UserTable({
   const [screenWidth] = useScreenWidth();
   const navigate = useNavigate();
 
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   return (
     <div style={{ margin: "10px " }}>

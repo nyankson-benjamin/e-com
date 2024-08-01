@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { API } from "../Services/api";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 export default function useCart() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
@@ -11,13 +13,12 @@ export default function useCart() {
     severity: "",
   });
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("userDetails"));
+  const {user} = useSelector(state=>state.userDetails)
 
   useEffect(() => {
     const fetch = async () => {
       try {
         setLoading(true);
-        // const response = await API.get("/Cart");
         const response = await API.get("/cart/?id=" + user._id);
         setLoading(false);
         setData(response?.data.cart);

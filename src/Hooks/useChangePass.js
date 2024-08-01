@@ -4,7 +4,6 @@ import { API } from "../Services/api";
 import { useNavigate } from "react-router-dom";
 export default function useChangePass() {
   const [users] = useUsers();
-  const isLoggedIn = Boolean(localStorage.getItem("isLoggedIn"));
   const id = localStorage.getItem("id");
   const user = users?.find((user) => user.id === Number(id));
   const navigate = useNavigate();
