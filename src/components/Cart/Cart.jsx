@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useCart from "../../Hooks/useCart";
 import AppsBar from "../../TopBar/AppBar";
 import CartTable from "./CartTable";
-import { Alert } from "@mui/material";
 import Alerts from "../Alert/Alerts";
 export default function Cart() {
   const [data, loading, handleDelete, handleBuy, alerts, handleCloseAlert] =

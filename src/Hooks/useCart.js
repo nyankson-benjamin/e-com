@@ -42,15 +42,7 @@ export default function useCart() {
     } catch (error) {}
   };
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const response = await API.get("/Sales");
-        setSalesData(response?.data);
-      } catch (error) {}
-    };
-    fetch();
-  }, []);
+
 
   const handleBuy = async (id, price, item, image, quantity) => {
     const buyDate = new Date();
@@ -64,31 +56,6 @@ export default function useCart() {
     const salesItem = salesData?.find((items) => items.item === item);
 
     if (salesItem) {
-      const price1 = salesItem.price + price;
-      const item1 = salesItem.item;
-      const image1 = salesItem.image;
-      const quantity = salesItem.quantity;
-      const existData = {
-        price: price1,
-        item: item1,
-        image: image1,
-        quantity: quantity,
-        date: date,
-      };
-      try {
-        await API.put(`/Sales/${salesItem.id}`, { ...existData });
-
-        setAlerts({
-          open: true,
-          message: "You have successfully buy the product",
-          severity: "info",
-        });
-
-        setTimeout(() => {
-          navigate("/cart");
-        }, 5000);
-      } catch (error) {}
-
       await API.delete("/Cart/" + id);
       const newCart = data?.filter((cart) => cart._id !== id);
       setData(newCart);
@@ -123,5 +90,14 @@ export default function useCart() {
       severity: "",
     });
   };
-  return [data, loading, handleDelete, handleBuy, alerts, handleCloseAlert];
+
+  const puchaseItem = async(id)=>{
+    console.log("purchase", id)
+try {
+ await API.post("/purchase", {userId:user._id, itemId:id})
+} catch (error) {
+  console.log("");
+}
+  }
+  return [data, loading, handleDelete, handleBuy, alerts, handleCloseAlert, puchaseItem];
 }

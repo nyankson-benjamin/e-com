@@ -21,7 +21,7 @@ export default function CartTable({ data, cart, handleDelete }) {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
 
-
+console.log(cart)
   return (
     <div style={{ margin: "10px " }}>
       <Header text="My Cart"/>
@@ -46,6 +46,7 @@ export default function CartTable({ data, cart, handleDelete }) {
                 <TableCell>Quantity</TableCell>
                 <TableCell>Unit Price ($)</TableCell>
                 <TableCell>Total Price ($)</TableCell>
+                <TableCell>Status</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Action</TableCell>
               </TableRow>
             </TableHead>
@@ -61,10 +62,11 @@ export default function CartTable({ data, cart, handleDelete }) {
                     <TableCell>{cart.quantity}</TableCell>
                     <TableCell>{cart.unitPrice}</TableCell>
                     <TableCell>{cart.totalPrice}</TableCell>
+                    <TableCell>{cart.purchased ? "Purchased" :"-"}</TableCell>
 
                     <TableCell>
-                      <ButtonGroup variant="contained" fullWidth>
-                        <Button
+                      {!cart.purchased ? <ButtonGroup variant="contained">
+                        <Button className="w-32"
                           variant="contained"
                           onClick={() => {
                             if (isLoggedIn) {
@@ -81,7 +83,14 @@ export default function CartTable({ data, cart, handleDelete }) {
                         >
                           <DeleteIcon />
                         </IconButton>
-                      </ButtonGroup>
+                      </ButtonGroup> :<div className="flex justify-end">
+                      <IconButton 
+                          onClick={() => handleDelete(cart._id, cart.item)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </div> }
+                      
                     </TableCell>
                     <TableRow></TableRow>
                   </TableRow>
@@ -137,7 +146,7 @@ export default function CartTable({ data, cart, handleDelete }) {
 
                     <TableCell>
                       <ButtonGroup variant="contained" fullWidth>
-                        <Button
+                        {!cart.purchased && <Button
                           variant="contained"
                           onClick={() => {
                             if (isLoggedIn) {
@@ -148,7 +157,7 @@ export default function CartTable({ data, cart, handleDelete }) {
                           }}
                         >
                           BUY
-                        </Button>
+                        </Button>}
                         <IconButton onClick={() => handleDelete(cart.id)}>
                           <DeleteIcon />
                         </IconButton>

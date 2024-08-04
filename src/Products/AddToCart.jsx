@@ -85,6 +85,7 @@ export default function AddToCart({ product }) {
           email: user.email,
           unitPrice: price,
           totalPrice: totalPrice,
+          itemId:product.id
         });
         if (response.data.message === "update price") {
           setOpen(true);

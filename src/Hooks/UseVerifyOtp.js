@@ -102,7 +102,7 @@ export default function useVerifyOtp() {
 
     try {
       setDisable(true);
-      const data = { code: Number(otp) };
+      const data = { code: Number(otp), email:localStorage.getItem("email") };
       await API.post("/confirm", { ...data });
       setDisable(false);
       setAlerts({

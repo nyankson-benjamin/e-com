@@ -5,6 +5,7 @@ import AppsBar from "../TopBar/AppBar";
 import RelatedProducts from "./RelatedProducts";
 import useScreenWidth from "../Hooks/useScreenWidth";
 import { Box,  } from "@mui/material";
+import Header from "../components/typography/Header"
 
 // import Footer from "../components/Footer";
 import ProductDetail from "./ProductDetail";
@@ -27,6 +28,7 @@ function ProductPage() {
   return (
     <div >
       <AppsBar />
+     { !isLoading && product && <Header text={product?.title}/>}
       {
         isLoading && <div className="w-[300px] h-[300px] flex justify-center items-center"><p>Loading...</p></div> 
       }
