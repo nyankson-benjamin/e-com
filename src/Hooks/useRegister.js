@@ -65,6 +65,7 @@ export default function useRegister() {
           severity: "success",
         });
         localStorage.setItem("code", otp);
+        localStorage.setItem("email", email)
         setTimeout(() => {
           navigate("/confirm");
         }, 5000);

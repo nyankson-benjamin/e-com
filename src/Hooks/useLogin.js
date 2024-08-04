@@ -4,7 +4,7 @@ import { API } from "../Services/api";
 import { useDispatch } from 'react-redux';
 import { updateLoginState } from "../store/slice/authSlice";
 import { setUser } from "../store/slice/userSlice";
-import * as jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 export default function useLogin() {
   const [email, setEmail] = useState("");
