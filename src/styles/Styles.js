@@ -5,7 +5,7 @@ export const topWhiteStyle = {
   margin: "21px auto",
   alignItems: "center",
   padding: 0,
-  top: "21px",
+  top: "21px", 
 };
 
 export const navBarStyle = {
