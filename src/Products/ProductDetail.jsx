@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, Typography, Stack, Rating } from "@mui/material";
 import useScreenWidth from "../Hooks/useScreenWidth";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,10 @@ import PropTypes from 'prop-types';
 function ProductDetail({ product }) {
   const [screenWidth] = useScreenWidth();
 const [image, setImage ] = useState(product.thumbnail)
+
+useEffect(()=>{
+  setImage(product.thumbnail)
+},[product])
   const navigate = useNavigate();
   return (
     <Box sx={{ mb: 5 }}>
