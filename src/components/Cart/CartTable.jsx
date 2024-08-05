@@ -21,7 +21,6 @@ export default function CartTable({ data, cart, handleDelete }) {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
 
-console.log(cart)
   return (
     <div style={{ margin: "10px " }}>
       <Header text="My Cart"/>

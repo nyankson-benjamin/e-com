@@ -101,10 +101,10 @@ export default function useVerifyOtp() {
     // }
 
     try {
-      setDisable(true);
+      setIsLoading(true);
       const data = { code: Number(otp), email:localStorage.getItem("email") };
       await API.post("/confirm", { ...data });
-      setDisable(false);
+      setIsLoading(false);
       setAlerts({
         open: true,
         message: "verification successfull",
@@ -114,6 +114,7 @@ export default function useVerifyOtp() {
         navigate("/login");
       }, 6000);
     } catch (error) {
+      setIsLoading(false)
       setAlerts({
         open: true,
         message: "Invalid verification code.",
@@ -144,8 +145,8 @@ export default function useVerifyOtp() {
     otp,
     otpInputRef,
     hasErrored,
-    isLoading,
     alerts,
     handleCloseAlert,
+    isLoading,
   ];
 }

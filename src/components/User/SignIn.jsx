@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import LoginButton from "../Buttons/LoginButton";
 import useLogin from "../../Hooks/useLogin";
 import Alerts from "../Alert/Alerts";
+import AuthButton from "../Buttons/AuthButton";
+
 function SignIn({
   handleCloseAlert,
   email,
@@ -22,24 +24,9 @@ function SignIn({
   alert,
   disable,
   handleSubmit,
+  isLoading
 }) {
-  // const [
-  //   handleSubmit,
-  //   email,
-  //   password,
-  //   disable,
-  //   handleEmail,
-  //   handlePassword,
-  //   handleLogOut,
-  //   alert,
-  //   handleCloseAlert,
-  //   user,
-  // ] = useLogin();
-  // const alerts = {
-  //   open: true,
-  //   message: "hello",
-  //   severity: "info",
-  // };
+ 
   return (
     <Box >
       <Alerts alert={alert} handleCloseAlert={handleCloseAlert} />
@@ -95,7 +82,7 @@ function SignIn({
           }}
         />
 
-        <LoginButton disable={disable} handleSubmit={handleSubmit} />
+        <AuthButton disable={disable || isLoading} handleSubmit={handleSubmit} isLoading={isLoading} text="Login" />
 
         <p>
           Dont have and account? Signup<Link to="/signup"> here</Link>

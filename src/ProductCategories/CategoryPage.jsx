@@ -10,7 +10,6 @@ function Laptops() {
   return (
     <div>
       <AppsBar ItemCategory="Laptops" />
-
       {isLoading ? (
         <ProductSkeleton />
       ) : (

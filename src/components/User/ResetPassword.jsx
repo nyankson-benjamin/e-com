@@ -1,32 +1,29 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   TextField,
   FormControl,
   FormLabel,
   InputAdornment,
 } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { useNavigate } from "react-router-dom";
-import useUsers from "../../Hooks/useUsers";
 import Alerts from "../Alert/Alerts";
 import BackButton from "../Buttons/BackButton";
-import ResetButton from "../Buttons/ResetButton";
+import AuthButton from "../Buttons/AuthButton";
 import { API } from "../../Services/api";
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [error, setError] = useState("");
   const [disable, setDisable] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [alerts, setAlerts] = useState({
     open: false,
     message: "",
     severity: "",
   });
   const navigate = useNavigate();
-  const email = localStorage.getItem("email");
-  const [users] = useUsers();
-  const user = users?.find((user) => user.email === email);
 
   const handlePassword = (event) => {
     setPassword(event.target.value);
@@ -53,39 +50,17 @@ export default function ResetPassword() {
     }
   });
   const handleForgot = async () => {
-    // if (user && user.email === email) {
-    //   const data = { password: password, confirmPass: confirmPass };
-    //   await API.patch("Users/" + user.id, { ...data });
-    //   setAlerts({
-    //     open: true,
-    //     message: "Password reset successfully",
-    //     severity: "success",
-    //   });
-    //   localStorage.removeItem("email");
 
-    //   setTimeout(() => {
-    //     navigate("/login");
-    //   }, 3000);
-    // } else {
-    //   setAlerts({
-    //     open: true,
-    //     message: "Email not found. Request for a change of password first",
-    //     severity: "error",
-    //   });
-    //   setTimeout(() => {
-    //     navigate("/forgot");
-    //   }, 3000);
-    // }
 
     try {
-      setDisable(true);
+      setIsLoading(true);
       await API.post("/resetPassword", { password, confirmPass });
       setAlerts({
         open: true,
         message: "Password reset successfully",
         severity: "success",
       });
-      setDisable(false);
+      setIsLoading(false);
 
       setTimeout(() => {
         navigate("/login");
@@ -97,14 +72,14 @@ export default function ResetPassword() {
           message: "There was a problem reseting your password",
           severity: "error",
         });
-        setDisable(false);
+        setIsLoading(false);
       } else {
         setAlerts({
           open: true,
           message: error?.response?.data,
           severity: "error",
         });
-        setDisable(false);
+        setIsLoading(false);
       }
     }
   };
@@ -171,7 +146,7 @@ export default function ResetPassword() {
       />
 
       <br />
-      <ResetButton handleForgot={handleForgot} disable={disable} />
+      <AuthButton handleSubmit={handleForgot} disable={disable || isLoading} isLoading={isLoading} />
       <BackButton />
     </FormControl>
   );

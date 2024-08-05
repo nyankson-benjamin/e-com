@@ -12,6 +12,7 @@ export default function useLogin() {
   const [disable, setDisable] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false)
 
   const [alert, setAlert] = useState({
     open: false,
@@ -47,7 +48,7 @@ export default function useLogin() {
     const location = localStorage.getItem("userPrevLocation");
 
     try {
-      setDisable(true);
+      setIsLoading(true);
       const response = await API.post("/user/login", { email, password });
       const { accessToken, refreshToken } = response.data.data;
 
@@ -68,7 +69,7 @@ export default function useLogin() {
         } else {
           navigate("/");
         }
-        setDisable(false);
+        setIsLoading(false);
       }, 4000);
     } catch (error) {
       let errorMessage = "An error occurred";
@@ -82,7 +83,12 @@ export default function useLogin() {
         message: errorMessage,
         severity: "error",
       });
-      setDisable(false);
+      setTimeout(() => {
+        setAlert({
+          open:false
+        })
+      }, 3000);
+      setIsLoading(false);
     }
   };
 
@@ -114,5 +120,6 @@ export default function useLogin() {
     handleLogOut,
     alert,
     handleCloseAlert,
+    isLoading
   ];
 }

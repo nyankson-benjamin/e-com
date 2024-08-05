@@ -92,7 +92,6 @@ export default function useCart() {
   };
 
   const puchaseItem = async(id)=>{
-    console.log("purchase", id)
 try {
  await API.post("/purchase", {userId:user._id, itemId:id})
 } catch (error) {

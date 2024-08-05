@@ -1,47 +1,42 @@
 import { useEffect, useState } from "react";
-import { API } from "../Services/api";
+import { DUMMy_API } from "../Services/api";
 
 export default function useFetchProducts() {
-  const [data, setData] = useState();
-  const [isLoading, setisLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [count, setCount] = useState(0);
+  const [url, setUrl] = useState("/?limit=10&skip=0");
+  const [error, setError] = useState("");
 
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+  // Function to update the API URL
+  const updateUrl = (newUrl) => {
+    setUrl(newUrl);
+  };
+
+
+
+  // Function to fetch data from the API
+  const fetchData = async (apiUrl) => {
+    setIsLoading(true);
+    try {
+      const response = await DUMMy_API.get(`/products/${apiUrl}&&sortBy=title&order=asc`);
+      const products = response.data.products;
+      setData((products));
+      setCount(response.data.total);
+      setError("");
+    } catch (err) {
+      setError(err.message);
+      setData([]);
+      setCount(0);
+    } finally {
+      setIsLoading(false);
     }
-  }
-  
+  };
 
-  function shuffleByCategory(products) {
-    // Shuffle the entire products array
-    shuffleArray(products);
-  
-    // Return the shuffled products
-    return products;
-  }
-  
-  const [error, setError] = useState("")
-  function getUniqueCategories(products) {
-    const categories = products?.map(product => product?.category);
-     (localStorage.setItem("categories",JSON.stringify([...new Set(categories)])));
-  }
+  // useEffect hook to fetch data when the URL changes
   useEffect(() => {
-    const fetch = async () => {
-      try {
-        setisLoading(true);
-        const response = await API.get("/products/");
-        // console.log('response',response)
-        setisLoading(false);
-        setData(shuffleByCategory(response?.data));
-        getUniqueCategories(response?.data)
-        setError("")
-      } catch (error) {
-        setError(error.message)
-        setisLoading(false)
-      }
-    };
-    fetch();
-  }, []);
-  return [data, isLoading, error,];
+    fetchData(url);
+  }, [url]);
+
+  return { data, isLoading, error, count, updateUrl };
 }
