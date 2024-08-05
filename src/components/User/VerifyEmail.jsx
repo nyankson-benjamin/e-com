@@ -1,8 +1,9 @@
 import useVerifyOtp from "../../Hooks/UseVerifyOtp";
 import OtpInput from "react-otp-input";
-import VerifyEmailButton from "../Buttons/VerifyEmailButton";
 import BackButton from "../Buttons/BackButton";
 import Alerts from "../Alert/Alerts";
+import AuthButton from "../Buttons/AuthButton";
+
 export default function VerifyEmail() {
   const renderInput = (props) => <input {...props} />;
 
@@ -17,6 +18,7 @@ export default function VerifyEmail() {
     hasErrored,
     alerts,
     handleCloseAlert,
+    isLoading
   ] = useVerifyOtp();
   return (
     <div className="otp">
@@ -42,7 +44,8 @@ export default function VerifyEmail() {
         inputStyle={{margin:"5px"}}
       />
       <br />
-      <VerifyEmailButton handleSubmit={handleSubmit} disable={disable} />
+
+      <AuthButton handleSubmit={handleSubmit} disable={disable || isLoading} isLoading={isLoading} text="Verify Email" />
       <BackButton />
     </div>
   );

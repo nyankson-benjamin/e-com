@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
+import PropTypes from 'prop-types';
 
-export default function LoginButton({ disable, handleSubmit, isLoading }) {
+export default function AuthButton({ disable, handleSubmit, isLoading, text="Submit" }) {
   return (
     <div>
       <Button
@@ -22,9 +23,16 @@ export default function LoginButton({ disable, handleSubmit, isLoading }) {
         }}
         disableElevation
       >
-        {isLoading ? "Loading..." : "Login"}
+        {isLoading ? "Loading..." : text}
       </Button>
-      
     </div>
   );
 }
+
+// PropTypes validation
+AuthButton.propTypes = {
+  disable: PropTypes.bool.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool,
+  text:PropTypes.string
+};

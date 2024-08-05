@@ -5,6 +5,7 @@ import { Grid, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import ProductSkeleton from "../components/ProductSkeleton";
 import { DUMMy_API,  } from "../Services/api";
+import Header from "../components/typography/Header";
 
 export default function Fragrances() {
   const [categoryData, setCategoryData] = useState();
@@ -27,6 +28,7 @@ export default function Fragrances() {
   return (
     <div>
       <AppsBar ItemCategory={category} />
+      <Header text={category}/>
       {loading ? (
         <ProductSkeleton />
       ) : (

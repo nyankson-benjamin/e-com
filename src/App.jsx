@@ -18,8 +18,21 @@ import MyDashBoard from "./Pages/MyDashBoard";
 import ChangePassword from "./Pages/ChangePassword";
 import PageNotFound from "./components/PageNotFound"
 import Categories from "./ProductCategories/Categories"
+import { DUMMy_API } from "./Services/api";
+import {useEffect} from "react"
 
 function App() {
+
+  const getProductCategories =async ()=>{
+    const res = await DUMMy_API.get('https://dummyjson.com/products/category-list')
+    localStorage.setItem("categories", JSON.stringify((res?.data)));
+
+  }
+
+  useEffect(()=>{
+    getProductCategories()
+  },[])
+
   return (
     <div className="App">
       <Routes>

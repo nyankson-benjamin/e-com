@@ -11,6 +11,7 @@ export default function useRegister() {
   const [confirmPass, setConfirmpass] = useState("");
   const [disable, setDisable] = useState(false);
   const [country, setCountry] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
   const [alert, setAlert] = useState({
     open: false,
     message: "",
@@ -55,9 +56,9 @@ export default function useRegister() {
       });
     } else {
       try {
-        setDisable(true);
+        setIsLoading(true);
         const response = await API.post("/user/register", { ...data });
-        setDisable(false);
+        setIsLoading(false);
         // alert(`Your verication code is: ${otp}`);
         setAlert({
           open: true,
@@ -85,7 +86,7 @@ export default function useRegister() {
           });
         }
 
-        setDisable(false);
+        setIsLoading(false);
       }
     }
   };
@@ -165,5 +166,6 @@ export default function useRegister() {
     handleCountry,
     alert,
     handleCloseAlert,
+    isLoading
   ];
 }

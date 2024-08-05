@@ -7,14 +7,16 @@ import {
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import { useNavigate } from "react-router-dom";
-import ForgotButton from "../Buttons/ForgotButton";
 import useUsers from "../../Hooks/useUsers";
 import Alerts from "../Alert/Alerts";
 import BackButton from "../Buttons/BackButton";
 import { API } from "../../Services/api";
+import AuthButton from "../Buttons/AuthButton";
+
 export default function ForgetPassword() {
   const [email, setEmail] = useState("");
   const [disable, setDisable] = useState(true);
+  const [isLoading, setIsLoading] = useState(false)
   const [alerts, setAlerts] = useState({
     open: false,
     message: "",
@@ -63,9 +65,9 @@ export default function ForgetPassword() {
     
 
     try {
-      setDisable(true);
+      setIsLoading(true);
       await API.post("/forgetPassword", { email: email });
-      setDisable(false);
+      setIsLoading(false);
       setAlerts({
         open: true,
         message: "Request have been made successfully",
@@ -81,14 +83,14 @@ export default function ForgetPassword() {
           message: "Email was not found",
           severity: "error",
         });
-        setDisable(false);
+        setIsLoading(false);
       } else {
         setAlerts({
           open: true,
           message: "There was an error proccessing your email",
           severity: "error",
         });
-        setDisable(false);
+        setIsLoading(false);
       }
     }
   };
@@ -134,7 +136,7 @@ export default function ForgetPassword() {
       />
 
       <br />
-      <ForgotButton handleForgot={handleForgot} disable={disable} />
+      <AuthButton handleSubmit={handleForgot} disable={disable || isLoading} isLoading={isLoading} text="Reset password" />
       <BackButton />
     </FormControl>
   );

@@ -76,3 +76,39 @@ body{
 .read-the-docs {
   color: #888;
 }
+
+
+.pagination-container {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.paginate-buttons {
+  height: 32px;
+  width: 32px;
+  border-radius: 8px !important;
+  cursor: pointer;
+  background-color: white !important;
+  border: none !important;
+  color: #696f8c !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginate-buttons:hover {
+  background-color: transparent;
+}
+
+.active-page {
+  color: #000000 !important;
+  outline-width: 0;
+  border-radius: 8px !important;
+  border: none !important;
+  background-color: #ffc801 !important;
+}
+
+.active-page:hover {
+  background-color: white;
+}

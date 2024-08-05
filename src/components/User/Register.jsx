@@ -12,6 +12,8 @@ import SignupButton from "../Buttons/SignupButton";
 import useRegister from "../../Hooks/useRegister";
 import { Link } from "react-router-dom";
 import Alerts from "../Alert/Alerts";
+import AuthButton from "../Buttons/AuthButton";
+
 export default function Register() {
   const [
     handleSubmit,
@@ -21,6 +23,7 @@ export default function Register() {
     handleCountry,
     alert,
     handleCloseAlert,
+    isLoading
   ] = useRegister();
   return (
     <FormControl sx={{ width: "80%" }}>
@@ -83,7 +86,7 @@ export default function Register() {
         </TextField>
       </Box>
       <br />
-      <SignupButton handleSubmit={handleSubmit} disable={disable} />
+      <AuthButton handleSubmit={handleSubmit} disable={disable || isLoading} isLoading={isLoading} text="Signup" />
 
       <p>
         {" "}

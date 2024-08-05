@@ -16,6 +16,7 @@ export default function Login() {
     handleLogOut,
     alert,
     handleCloseAlert,
+    isLoading
   ] = useLogin();
   return (
     <div className="bg-white h-[100vh]">
@@ -44,6 +45,7 @@ export default function Login() {
               alert={alert}
               disable={disable}
               handleSubmit={handleSubmit}
+              isLoading={isLoading}
             />
           </Box>
         </Box>

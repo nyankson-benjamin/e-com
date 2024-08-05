@@ -2,14 +2,17 @@ import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import ProductSkeleton from "../components/ProductSkeleton";
+const navigate = (url)=>{
+  window.location = url
+}
 
-function ProductCard({ product, isLoading, showAll }) {
+function ProductCard({ product, isLoading,  }) {
   return (
     <div className="productCard bg-white">
       {isLoading ? (
         <ProductSkeleton />
       ) : (
-        <Link to={`/productPage/${product.title}`}>
+        <Link to={`/productPage/${product.title}`} onClick={()=>navigate(`/productPage/${product.title}`)}>
           <Box
             sx={{
               filter: "drop-shadow(0px 0px 9px rgba(153, 153, 153, 0.25))",

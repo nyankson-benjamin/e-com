@@ -1,39 +1,24 @@
-import React, { useEffect, useState } from "react";
-import useFetchProducts from "../FetchingHooks/useFetchProducts";
-import { useParams } from "react-router-dom";
+import useGetProductDetails from "../FetchingHooks/useGetProductDetails";
 import AppsBar from "../TopBar/AppBar";
 import RelatedProducts from "./RelatedProducts";
-import useScreenWidth from "../Hooks/useScreenWidth";
 import { Box,  } from "@mui/material";
 import Header from "../components/typography/Header"
 
-// import Footer from "../components/Footer";
 import ProductDetail from "./ProductDetail";
 function ProductPage() {
-  const [data, isLoading] = useFetchProducts();
-  const { title } = useParams();
-  const [related, setRelated] = useState();
-  const product = data?.find((product) => product.title === title);
+  const {data, isLoading, relatedError, loadingRelated,related} = useGetProductDetails();
   
 
-  useEffect(() => {
-    if (product) {
-      setRelated(
-        data?.filter((relate) => relate.category === product.category)
-      );
-    }
-  }, [ data, product]);
 
-  let original = related?.filter((item) => item.title !== product.title);
   return (
     <div >
       <AppsBar />
-     { !isLoading && product && <Header text={product?.title}/>}
+     { !isLoading && data && <Header text={data?.title}/>}
       {
         isLoading && <div className="w-[300px] h-[300px] flex justify-center items-center"><p>Loading...</p></div> 
       }
-      {product && (
-        <Box sx={{mb:20}}>
+      {!isLoading && data.title && (
+        <Box sx={{mb:20,}} className="mt-5">
           <Box
             sx={{
               // height: "200px",
@@ -44,14 +29,14 @@ function ProductPage() {
   
             }}
           >
-            <ProductDetail product={product} />
+            <ProductDetail product={data} />
           </Box>
 
           <Box >
-            {original?.length>1 && (
+            {related?.length>1 && (
               <>
                 <h3 className="font-bold py-5 bg-white mb-5">RELATED PRODUCTS</h3>
-                <RelatedProducts related={original} loading={isLoading} />
+                <RelatedProducts related={related} loading={loadingRelated} />
               </>
             )}
           </Box>
