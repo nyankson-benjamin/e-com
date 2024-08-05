@@ -90,7 +90,7 @@ return (
   </div>
 }
 {
-  screenWidth >600 && <Searchitem search={search} handleChange={handleChange}/>
+  screenWidth >600 && route.pathname === '/'&& <Searchitem search={search} handleChange={handleChange}/>
 
 }
           </Box>
