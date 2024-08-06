@@ -10,7 +10,6 @@ export default function usePhones() {
         const response = await DUMMy_API.get("product/category/smartphones");
         setLoading(false);
         setPhones(response?.data?.products);
-        // console.log(response?.data?.products);
       } catch (error) {}
     };
     fetch();

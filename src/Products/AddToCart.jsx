@@ -1,11 +1,11 @@
 import { Box, Typography, IconButton, TextField, Button } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import useScreenWidth from "../Hooks/useScreenWidth";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { API } from "../Services/api";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useCart from "../Hooks/useCart";
 import Modals from "../components/Cart/Modals";
 import Alert from "../components/Alert/Alerts";
@@ -131,7 +131,6 @@ export default function AddToCart({ product }) {
       return;
     }
 
-    // setOpenAlert(false);
     setAlert({
       open: false,
       message: "",
@@ -197,7 +196,6 @@ export default function AddToCart({ product }) {
               textAlign: "center",
               width: "300px",
               margin: "auto",
-              //   marginLeft: "20px",
             }}
           >
             <Typography>{product.title}</Typography>
@@ -278,7 +276,6 @@ export default function AddToCart({ product }) {
                 width: "300px",
                 height: "300px",
                 border: "2px solid #ffc801",
-                // marginTop: "10px",
                 marginBottom: "10px",
                 padding: "5px",
                 borderRadius: "5px",

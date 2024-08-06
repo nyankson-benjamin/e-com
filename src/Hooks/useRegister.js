@@ -3,12 +3,12 @@ import { API } from "../Services/api";
 import useUsers from "./useUsers";
 import { useNavigate } from "react-router-dom";
 export default function useRegister() {
-  const [fname, setFName] = useState("");
+  const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPass, setConfirmpass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
   const [disable, setDisable] = useState(false);
   const [country, setCountry] = useState("");
   const [isLoading, setIsLoading] = useState(false)
@@ -57,9 +57,8 @@ export default function useRegister() {
     } else {
       try {
         setIsLoading(true);
-        const response = await API.post("/user/register", { ...data });
+        await API.post("/user/register", { ...data });
         setIsLoading(false);
-        // alert(`Your verication code is: ${otp}`);
         setAlert({
           open: true,
           message: `A verification code has been sent to your email`,
@@ -71,7 +70,6 @@ export default function useRegister() {
           navigate("/confirm");
         }, 5000);
       } catch (error) {
-        // console.log(error.message === "Request failed with status code 409");
         if (error?.message === "Request failed with status code 409") {
           setAlert({
             open: true,
@@ -94,7 +92,7 @@ export default function useRegister() {
   const handleChange = (event) => {
     switch (event.target.name) {
       case "fname":
-        setFName(event.target.value);
+        setFname(event.target.value);
         break;
       case "lname":
         setLname(event.target.value);
@@ -112,7 +110,7 @@ export default function useRegister() {
         setPassword(event.target.value);
         break;
       case "confirmPassword":
-        setConfirmpass(event.target.value);
+        setConfirmPass(event.target.value);
         break;
     }
   };

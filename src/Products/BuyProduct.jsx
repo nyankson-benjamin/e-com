@@ -1,14 +1,12 @@
 import useGetProductDetails from "../FetchingHooks/useGetProductDetails";
 import { Box } from "@mui/material";
 import RelatedProducts from "./RelatedProducts";
-import AppsBar from "../TopBar/AppBar";
 import AddToCart from "./AddToCart";
 function BuyProduct() {
   const {data, isLoading, error,relatedError, loadingRelated,related} = useGetProductDetails();
 
   return (
     <Box>
-      <AppsBar />
       {!isLoading && data && (
         <Box>
           <AddToCart product={data} />

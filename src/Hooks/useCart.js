@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API } from "../Services/api";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function useCart() {
   const [data, setData] = useState();

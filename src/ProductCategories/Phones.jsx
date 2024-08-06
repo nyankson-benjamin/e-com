@@ -1,5 +1,3 @@
-import React from "react";
-import AppsBar from "../TopBar/AppBar";
 import ProductCard from "../Products/ProductCard";
 import { Grid, Box } from "@mui/material";
 import ProductSkeleton from "../components/ProductSkeleton";
@@ -9,7 +7,6 @@ export default function Phones() {
   const phones = data?.filter((phone) => phone.category === "smartphones");
   return (
     <div>
-      <AppsBar ItemCategory="Phones" />
       {isLoading ? (
         <ProductSkeleton />
       ) : (

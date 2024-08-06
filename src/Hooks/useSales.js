@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { API } from "../Services/api";
 export default function useSales() {
   const [sales, setSales] = useState();
@@ -7,7 +7,6 @@ export default function useSales() {
     const fetch = async () => {
       try {
         const response = await API.get("/Sales");
-        // console.log(response);
         setSales(response?.data);
       } catch (error) {}
     };

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useCart from "../../Hooks/useCart";
-import AppsBar from "../../TopBar/AppBar";
 import CartTable from "./CartTable";
 import Alerts from "../Alert/Alerts";
 export default function Cart() {
@@ -28,7 +27,6 @@ export default function Cart() {
   return (
     <div>
       <Alerts alert={alerts} handleCloseAlert={handleCloseAlert} />
-      <AppsBar search={filt} handleChange={handleChange} />
       <CartTable cart={cart} handleDelete={handleDelete} />
     </div>
   );

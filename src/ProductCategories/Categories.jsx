@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import AppsBar from "../TopBar/AppBar";
 import ProductCard from "../Products/ProductCard";
 import { Grid, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -27,7 +26,6 @@ export default function Fragrances() {
   }, [category]);
   return (
     <div>
-      <AppsBar ItemCategory={category} />
       <Header text={category}/>
       {loading ? (
         <ProductSkeleton />

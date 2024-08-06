@@ -1,5 +1,4 @@
 #root {
-  /* max-width: 1280px; */
   margin: 0 auto;
   text-align: center;
 
@@ -7,8 +6,8 @@
 
 /* The entire scrollbar */
 ::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
-  height: 5px; /* Height of the scrollbar (horizontal) */
+  width: 0px; /* Width of the scrollbar */
+  height: 0px; /* Height of the scrollbar (horizontal) */
 }
 
 /* The scrollbar track (background) */

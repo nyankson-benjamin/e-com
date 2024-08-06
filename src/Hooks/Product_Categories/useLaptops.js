@@ -9,7 +9,6 @@ export default function useLaptops() {
         setLoading(true);
         const response = await DUMMy_API.get("products/category/laptops");
         setLoading(false);
-        // console.log(response);
         setLaptops(response?.data?.products);
       } catch (error) {}
     };

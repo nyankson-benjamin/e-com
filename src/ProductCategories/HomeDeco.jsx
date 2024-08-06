@@ -1,5 +1,3 @@
-import React from "react";
-import AppsBar from "../TopBar/AppBar";
 import ProductCard from "../Products/ProductCard";
 import { Grid, Box } from "@mui/material";
 import ProductSkeleton from "../components/ProductSkeleton";
@@ -9,7 +7,6 @@ export default function HomeDeco() {
   const HomeDeco = data?.filter((deco) => deco.category === "home-decoration");
   return (
     <div>
-      <AppsBar ItemCategory="Home Decorations" />
       {isLoading ? (
         <ProductSkeleton />
       ) : (

@@ -1,5 +1,4 @@
 import useGetProductDetails from "../FetchingHooks/useGetProductDetails";
-import AppsBar from "../TopBar/AppBar";
 import RelatedProducts from "./RelatedProducts";
 import { Box,  } from "@mui/material";
 import Header from "../components/typography/Header"
@@ -12,7 +11,6 @@ function ProductPage() {
 
   return (
     <div >
-      <AppsBar />
      { !isLoading && data && <Header text={data?.title}/>}
       {
         isLoading && <div className="w-[300px] h-[300px] flex justify-center items-center"><p>Loading...</p></div> 

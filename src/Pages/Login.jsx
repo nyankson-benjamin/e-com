@@ -1,4 +1,3 @@
-import AppsBar from "../TopBar/AppBar";
 import SignIn from "../components/User/SignIn";
 import useScreenWidth from "../Hooks/useScreenWidth";
 import signupImg from "../assets/signup.jpg";
@@ -20,7 +19,6 @@ export default function Login() {
   ] = useLogin();
   return (
     <div className="bg-white h-[100vh]">
-      <AppsBar handleLogOut={handleLogOut} />
       {screenWidth > 600 ? (
         <Box
           sx={{

@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './slice/authSlice'
 import alertSlice from './slice/alertSlice';
 import userSlice from './slice/userSlice';
+import searchSlice from './slice/searchSlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
@@ -24,7 +25,8 @@ export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     alert:alertSlice,
-    userDetails:persistedUserReducer
+    userDetails:persistedUserReducer,
+    searchItem:searchSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
