@@ -1,4 +1,3 @@
-import AppsBar from "../TopBar/AppBar";
 import useScreenWidth from "../Hooks/useScreenWidth";
 import confirmImg from "../assets/user/confirm.jpg";
 import { Box } from "@mui/material";
@@ -8,7 +7,6 @@ export default function Verify() {
 
   return (
     <div className="bg-white h-[100vh]">
-      <AppsBar />
       {screenWidth > 600 ? (
         <Box
           sx={{

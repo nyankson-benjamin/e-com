@@ -1,16 +1,12 @@
 import { Box, Button, TextField } from "@mui/material";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import AppsBar from "../../TopBar/AppBar";
-import useUsers from "../../Hooks/useUsers";
 import useChangePass from "../../Hooks/useChangePass";
 import Alerts from "../Alert/Alerts";
 import { useSelector } from "react-redux";
 
 export default function ChangePass() {
-  const [users] = useUsers();
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
-  const id = localStorage.getItem("id");
   const navigate = useNavigate();
   const [handleChange, formData, error, handleSubmit, alert, handleCloseAlert] =
     useChangePass();
@@ -21,7 +17,6 @@ export default function ChangePass() {
   }, [isLoggedIn]);
   return (
     <Box>
-      <AppsBar />
       <Box mt={10} sx={{ width: "90%", m: "auto", textAlign: "left" }}>
         <Alerts alert={alert} handleCloseAlert={handleChange} />
         <form onSubmit={handleSubmit}>

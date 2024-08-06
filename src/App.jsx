@@ -19,13 +19,35 @@ import ChangePassword from "./Pages/ChangePassword";
 import PageNotFound from "./components/PageNotFound"
 import Categories from "./ProductCategories/Categories"
 import { DUMMy_API } from "./Services/api";
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
+import AppsBar from "./TopBar/AppBar";
+import {  useDispatch, useSelector } from "react-redux";
+import {updateSearchItem} from "./store/slice/searchSlice";
+import {setAlert,} from "./store/slice/alertSlice";
+import Alerts from "./components/Alert/Alerts";
 
 function App() {
+  const [filter, setFilter] = useState("");
+const dispatch = useDispatch();
+const alert = useSelector(state=>state.alert)
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+    if(e.key && e.key === "Enter"){
+      dispatch(updateSearchItem(e.target.value))
+    }
+
+    if(!filter){
+      dispatch(updateSearchItem(""))
+setFilter("")
+    }
+  };
 
   const getProductCategories =async ()=>{
-    const res = await DUMMy_API.get('https://dummyjson.com/products/category-list')
+    try {
+      const res = await DUMMy_API.get('https://dummyjson.com/products/category-lisjjjt')
     localStorage.setItem("categories", JSON.stringify((res?.data)));
+    } catch (error) {
+    }
 
   }
 
@@ -35,6 +57,7 @@ function App() {
 
   return (
     <div className="App">
+      <AppsBar search={filter} handleChange={handleFilterChange}/>
       <Routes>
         <Route exact path="/" element={<Products />} />
         <Route path="/login" element={<Login />} />

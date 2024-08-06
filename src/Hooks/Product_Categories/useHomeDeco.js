@@ -12,7 +12,6 @@ export default function useHomeDeco() {
           "products/category/home-decoration"
         );
         setLoading(false);
-        // console.log(response);
         setDeco(response?.data?.products);
       } catch (error) {}
     };

@@ -1,5 +1,4 @@
 import Register from "../components/User/Register";
-import AppsBar from "../TopBar/AppBar";
 import useScreenWidth from "../Hooks/useScreenWidth";
 import signupImg from "../assets/signup.jpg";
 import { Box } from "@mui/material";
@@ -8,7 +7,6 @@ export default function Signup() {
 
   return (
     <div className="bg-white pb-5">
-      <AppsBar />
       {screenWidth > 600 ? (
         <Box
           sx={{

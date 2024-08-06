@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
 import useCart from "../../Hooks/useCart";
 import { useParams } from "react-router-dom";
-import AppsBar from "../../TopBar/AppBar";
-import { Alert, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import Alerts from "../Alert/Alerts";
 export default function Buy() {
   const { id } = useParams();
@@ -13,7 +11,6 @@ export default function Buy() {
 
   return (
     <div>
-      <AppsBar />
       <Alerts alert={alerts} handleCloseAlert={handleCloseAlert} />
       {cartitem && (
         <div>

@@ -2,12 +2,10 @@ import ForgetPassword from "../components/User/ForgetPassword";
 import {  Box } from "@mui/material";
 import ForgotImg from "../assets/user/ForgotImg.jpg";
 import useScreenWidth from "../Hooks/useScreenWidth";
-import AppsBar from "../TopBar/AppBar";
 export default function Forgot() {
   const [screenWidth] = useScreenWidth();
   return (
     <div className="bg-white h-[100vh]">
-      <AppsBar />
       {screenWidth > 600 ? (
         <Box
           sx={{

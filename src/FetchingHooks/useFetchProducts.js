@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { DUMMy_API } from "../Services/api";
 
-export default function useFetchProducts() {
+export default function useFetchProducts(limit=10) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [count, setCount] = useState(0);
-  const [url, setUrl] = useState("/?limit=10&skip=0");
+  const [url, setUrl] = useState(`/?limit=${limit}&skip=0`);
   const [error, setError] = useState("");
 
   // Function to update the API URL

@@ -1,4 +1,3 @@
-import AppsBar from "../TopBar/AppBar";
 import ProductCard from "../Products/ProductCard";
 import ProductSkeleton from "../components/ProductSkeleton";
 import useFetchProducts from "../FetchingHooks/useFetchProducts";
@@ -9,7 +8,6 @@ function Laptops() {
   const laptop = data?.filter((laptop) => laptop.category === "laptops");
   return (
     <div>
-      <AppsBar ItemCategory="Laptops" />
       {isLoading ? (
         <ProductSkeleton />
       ) : (

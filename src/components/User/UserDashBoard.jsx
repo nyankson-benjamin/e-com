@@ -1,6 +1,5 @@
 import { Avatar, Box } from "@mui/material";
 import { useEffect,  } from "react";
-import AppsBar from "../../TopBar/AppBar";
 import { useNavigate } from "react-router-dom";
 import NotAuthorized from "../NotAuthorized";
 import { useSelector } from "react-redux";
@@ -16,7 +15,6 @@ function UserDashBoard() {
   }, [isLoggedIn, navigate]);
   return (
     <Box>
-      <AppsBar />
      
       <Box>
         {isLoggedIn && user && user.isAdmin

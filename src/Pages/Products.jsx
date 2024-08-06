@@ -1,40 +1,31 @@
-import { useState, useRef } from "react";
-import AppsBar from "../TopBar/AppBar";
+import { useState, useRef, useEffect } from "react";
 import useFetchProducts from "../FetchingHooks/useFetchProducts";
 import { Box, Grid } from "@mui/material";
 import ProductCard from "../Products/ProductCard";
 import ProductSkeleton from "../components/ProductSkeleton";
 import Paginate from "../components/Paginate";
 import NoItemFound from "../components/NoItemFound";
+import { useSelector } from "react-redux";
+import Header from "../components/typography/Header";
 
 export default function Products() {
-  const {data, isLoading, error, count, updateUrl} = useFetchProducts();
+  const itemsPerPage = 12;
+  const {data, isLoading, error, count, updateUrl} = useFetchProducts(itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
-  const [filter, setFilter] = useState("");
-  const [serachItem, setSearchItem] = useState("")
   const sectionRef = useRef(null);
 
-  const itemsPerPage = 12;
+  const {searchItem} = useSelector(state=>state.searchItem)
   const pageCount = Math.ceil(count / itemsPerPage);
+  
+ 
 
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-    console.log(e.target.value)
-    if(e.key && e.key === "Enter"){
-      console.log("key",e.key)
-      updateUrl("search?q="+filter)
-      setSearchItem(filter)
-    }
+  useEffect(()=>{
+    updateUrl("search?q="+searchItem)
 
-    if(!filter){
-      updateUrl("search?q=")
-      setSearchItem("")
-    }
-  };
+  },[searchItem])
 
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
-    setFilter("");
     updateUrl(`/?limit=${itemsPerPage}&skip=${(value - 1) * itemsPerPage}`);
   };
 
@@ -43,12 +34,8 @@ export default function Products() {
   };
 
   return (
-    <div style={{ overflow: "scroll", height: "100%" }}>
-      <AppsBar search={filter} handleChange={handleFilterChange} />
-                <h3 className="font-bold py-5 bg-white " ref={sectionRef}>
-                  {serachItem ? `You searched for ${serachItem}` : "ALL PRODUCTS"}
-                </h3>
-  
+    <div style={{ overflow: "scroll", height: "100%", }} className="mb-10" ref={sectionRef}>
+<Header text={searchItem ? "You searched for " + searchItem : "All prodcucts"}/>
       {isLoading ? (
         <ProductSkeleton />
       ) : (

@@ -9,7 +9,6 @@ export default function useSkinCare() {
         setLoading(true);
         const response = await DUMMy_API.get("products/category/skincare");
         setLoading(false);
-        // console.log(response);
         setSkinCare(response?.data?.products);
       } catch (error) {}
     };

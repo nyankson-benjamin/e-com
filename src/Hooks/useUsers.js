@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { API } from "../Services/api";
 export default function useUsers() {
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState([]);
   const [role, setRole] = useState("");
   const [search, setSearch] = useState("");
   const [filterItem, setFilterItem] = useState([]);

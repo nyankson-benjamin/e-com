@@ -23,7 +23,6 @@ export default function AppsBar({
   ItemCategory,
   search,
   handleChange,
-  handleLogOut,
 }) {
   const [screenWidth] = useScreenWidth();
   const alert = useSelector((state) => state.alert)
@@ -31,6 +30,7 @@ export default function AppsBar({
 
   const dispatch = useDispatch()
  const beforeLoginRoutes = ["/cart"]
+ const afterLogin = ["/login", "/signup", "/confirm", "/reset", "/forgot"]
 const route = useLocation()
 const logout = ()=>{
 dispatch(updateLoginState(false))
@@ -57,6 +57,14 @@ beforeLoginRoutes?.forEach(item=>{
   }
 })
 },[beforeLoginRoutes, isLoggedIn, navigate, route])
+
+useEffect(()=>{
+  afterLogin?.forEach(item=>{
+    if(route.pathname===item && isLoggedIn){
+      navigate("/")
+    }
+  })
+  },[afterLogin, isLoggedIn, navigate, route])
 return (
     <Stack>
       <AppBar

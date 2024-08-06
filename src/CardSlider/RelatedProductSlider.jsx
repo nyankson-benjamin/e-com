@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./CardSlider.css";
 import { Link } from "react-router-dom";
-import { Button, IconButton } from "@mui/material";
+import {  IconButton } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+
+
 const RelatedProductSlider = ({ cards }) => {
   const [currentCard, setCurrentCard] = useState(0);
 
@@ -67,7 +69,6 @@ const RelatedProductSlider = ({ cards }) => {
           fontSize: "2rem",
           backgroundColor: "rgb(167, 166, 166)",
           border: "none",
-          color: "white",
           cursor: "pointer",
         }}
       >
@@ -85,7 +86,6 @@ const RelatedProductSlider = ({ cards }) => {
           fontSize: "2rem",
           backgroundColor: "rgb(167, 166, 166)",
           border: "none",
-          color: "white",
           cursor: "pointer",
         }}
       >
@@ -94,5 +94,6 @@ const RelatedProductSlider = ({ cards }) => {
     </div>
   );
 };
+
 
 export default RelatedProductSlider;

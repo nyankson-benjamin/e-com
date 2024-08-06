@@ -1,6 +1,5 @@
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import ReceiptIcon from "@mui/icons-material/Receipt";
 import HistoryToggleOffIcon from "@mui/icons-material/HistoryToggleOff";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import MessageIcon from "@mui/icons-material/Message";

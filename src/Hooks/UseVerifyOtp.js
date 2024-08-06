@@ -42,12 +42,8 @@ export default function useVerifyOtp() {
     if (event.keyCode === 8) {
       // Backspace key
       event.preventDefault();
-      const otpInput = otpInputRef.current.getInputInstance();
-      const inputValue = otpInput.value;
-      const cursorPosition = otpInput.selectionStart;
-      const newValue =
-        inputValue.slice(0, cursorPosition - 1) +
-        inputValue.slice(cursorPosition);
+     
+
     }
   }
 
@@ -63,42 +59,9 @@ export default function useVerifyOtp() {
       inputValue.slice(cursorPosition);
     setOTP(newValue);
   }
-  const user = users?.find((user) => user.otp === otp);
 
-  const code = localStorage.getItem("code");
 
   const handleSubmit = async (event) => {
-    // if (!code) {
-    //   setAlerts({
-    //     open: true,
-    //     message: "Please register first",
-    //     severity: "error",
-    //   });
-    //   setTimeout(() => {
-    //     navigate("/signup");
-    //   }, 3000);
-    // } else if (code && otp !== code) {
-    //   setAlerts({
-    //     open: true,
-    //     message: "Invalid verification code.",
-    //     severity: "error",
-    //   });
-
-    //   setOTP("");
-    //   hasErrored(true);
-    // } else if (otp === code) {
-    //   setAlerts({
-    //     open: true,
-    //     message: "verification successfull",
-    //     severity: "success",
-    //   });
-    //   const data = { isVerified: true, otp: "" };
-    //   await API.patch("Users/" + user.id, { ...data });
-    //   localStorage.removeItem("code");
-    //   setTimeout(() => {
-    //     navigate("/login");
-    //   }, 6000);
-    // }
 
     try {
       setIsLoading(true);
