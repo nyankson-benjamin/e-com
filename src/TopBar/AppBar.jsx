@@ -29,7 +29,7 @@ export default function AppsBar({
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
 
   const dispatch = useDispatch()
- const beforeLoginRoutes = ["/cart"]
+ const beforeLoginRoutes = []
  const afterLogin = ["/login", "/signup", "/confirm", "/reset", "/forgot"]
 const route = useLocation()
 const logout = ()=>{

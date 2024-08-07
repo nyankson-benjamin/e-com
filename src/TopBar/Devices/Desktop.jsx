@@ -50,8 +50,7 @@ const {user} = useSelector(state=>state.userDetails)
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {/* MILES */}
         </Typography>
-        {/* <Searchitem search={search} handleChange={handleChange} /> */}
-        {isLoggedIn && <CartLength user={user} />}
+        {<CartLength user={user} />}
 
         {page?.map((page) => (
           <Button

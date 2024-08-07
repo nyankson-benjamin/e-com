@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { updateLoginState } from "../store/slice/authSlice";
 import { setUser } from "../store/slice/userSlice";
 import { jwtDecode } from "jwt-decode";
+import { useSelector } from "react-redux";
+import { removeFromCart } from "../store/slice/cartSlice";
 
 export default function useLogin() {
   const [email, setEmail] = useState("");
@@ -13,7 +15,7 @@ export default function useLogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
-
+  const {cart:cartItem} = useSelector(state=>state.cartItem)
   const [alert, setAlert] = useState({
     open: false,
     message: "",
@@ -44,6 +46,19 @@ export default function useLogin() {
     setPassword(event.target.value);
   };
 
+  const addCartItems = async()=>{
+try {
+  const res = await API.post("/bulkAddToCart", {email, items:cartItem})
+if(res.data.message==="Process completed"){
+  cartItem?.forEach(item=>{
+    dispatch(removeFromCart(item?.itemId))
+  })
+}
+} catch (error) {
+  
+}
+  }
+
   const handleSubmit = async () => {
     const location = localStorage.getItem("userPrevLocation");
 
@@ -61,6 +76,10 @@ export default function useLogin() {
         message: "Login successful",
         severity: "success",
       });
+console.log("cart", cartItem)
+      if(cartItem?.length>0){
+        addCartItems()
+      }
 
       setTimeout(() => {
         if (location) {

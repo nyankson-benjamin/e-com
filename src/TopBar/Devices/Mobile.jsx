@@ -63,7 +63,7 @@ function Mobile({ categories, logOut }) {
             <Search />
           </IconButton> */}
 
-          {isLoggedIn && <CartLength />}
+          <CartLength />
           <Tooltip title="Open settings">
             <Button
               onClick={(event) => setCategory(event.currentTarget)}

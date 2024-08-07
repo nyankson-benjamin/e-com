@@ -44,7 +44,7 @@ setFilter("")
 
   const getProductCategories =async ()=>{
     try {
-      const res = await DUMMy_API.get('https://dummyjson.com/products/category-lisjjjt')
+      const res = await DUMMy_API.get('https://dummyjson.com/products/category-list')
     localStorage.setItem("categories", JSON.stringify((res?.data)));
     } catch (error) {
     }
