@@ -4,6 +4,7 @@ import alertSlice from './slice/alertSlice';
 import userSlice from './slice/userSlice';
 import searchSlice from './slice/searchSlice';
 import cartSlice from './slice/cartSlice';
+import modalSlice from './slice/modalSlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
@@ -34,7 +35,8 @@ export const store = configureStore({
     alert:alertSlice,
     userDetails:persistedUserReducer,
     searchItem:searchSlice,
-    cartItem: persistedCartReducer
+    cartItem: persistedCartReducer,
+    modal:modalSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

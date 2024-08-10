@@ -6,7 +6,7 @@ import { updateLoginState } from "../store/slice/authSlice";
 import { setUser } from "../store/slice/userSlice";
 import { jwtDecode } from "jwt-decode";
 import { useSelector } from "react-redux";
-import { removeFromCart } from "../store/slice/cartSlice";
+import { removeFromCart, setBackUpCart } from "../store/slice/cartSlice";
 
 export default function useLogin() {
   const [email, setEmail] = useState("");
@@ -50,9 +50,12 @@ export default function useLogin() {
 try {
   const res = await API.post("/bulkAddToCart", {email, items:cartItem})
 if(res.data.message==="Process completed"){
-  cartItem?.forEach(item=>{
-    dispatch(removeFromCart(item?.itemId))
-  })
+  dispatch(setBackUpCart())
+  setTimeout(() => {
+    cartItem?.forEach(item=>{
+      dispatch(removeFromCart(item?.itemId))
+    })
+  }, 10);
 }
 } catch (error) {
   

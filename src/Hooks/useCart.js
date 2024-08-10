@@ -27,7 +27,9 @@ export default function useCart() {
         setLoading(false);
         setData(response?.data.cart);
         dispatch(setCart(response?.data.cart))
-      } catch (error) {}
+      } catch (error) {
+        setLoading(false)
+      }
     };
     fetch();
   }, []);

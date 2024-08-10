@@ -24,13 +24,14 @@ function SignIn({
   alert,
   disable,
   handleSubmit,
-  isLoading
+  isLoading,
+  mt="100px"
 }) {
  
   return (
     <Box >
       <Alerts alert={alert} handleCloseAlert={handleCloseAlert} />
-      <FormControl sx={{ width: "70%", mt: "100px" }}>
+      <FormControl sx={{ width: "100%", mt: mt }}>
         <h3>Log in to your account</h3>
         <FormLabel
           sx={{ textAlign: "left", mt: 2, mb: 1, fontWeight: "bold" }}

@@ -92,11 +92,11 @@ className="bg-white"
           <div className="p-3">
           <Typography variant="h5">{product.description}</Typography>
           <Typography variant="h5">
-            <s>${product.price}</s>
+            <s>GHC{product.price}</s>
           </Typography>
           <Typography variant="h5">
             {" "}
-            $
+            GHC
             {(
               product.price -
               (product.discountPercentage / 100) * product.price

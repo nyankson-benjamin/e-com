@@ -14,19 +14,27 @@ import { updateLoginState } from "../store/slice/authSlice";
 import { setAlert } from "../store/slice/alertSlice";
 import { setUser } from "../store/slice/userSlice";
 import Alerts from "../components/Alert/Alerts";
+import {  setCart } from "../store/slice/cartSlice";
 
 import Desktop from "./Devices/Desktop";
 import Mobile from "./Devices/Mobile";
 import Searchitem from "../components/Searchitem";
 import { useEffect } from "react";
+
+import PropTypes from "prop-types";
+
+AppsBar.propTypes={
+search: PropTypes.string,
+handleChange:PropTypes.func
+}
 export default function AppsBar({
-  ItemCategory,
   search,
   handleChange,
 }) {
   const [screenWidth] = useScreenWidth();
   const alert = useSelector((state) => state.alert)
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
+  const cartBackUp = useSelector((state) => state.cartItem.cartBuckup)
 
   const dispatch = useDispatch()
  const beforeLoginRoutes = []
@@ -36,6 +44,7 @@ const logout = ()=>{
 dispatch(updateLoginState(false))
 dispatch(setUser({}))
 dispatch(setAlert(["success", "Logout successfull", true]))
+dispatch(setCart(cartBackUp))
     setTimeout(() => {
       navigate("/login");
     }, 3000);
@@ -115,10 +124,8 @@ return (
               </Typography>
 
               <Desktop
-                search={search}
                 handleChange={handleChange}
                 logOut={logout}
-                ItemCategory={ItemCategory}
                 categories={categories}
               />
             </>

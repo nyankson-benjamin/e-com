@@ -6,7 +6,8 @@ const initialState = {
     open:false,
     severity:"",
     message:""
-  }
+  },
+  cartBuckup:[]
 };
 
 export const cartSlice = createSlice({
@@ -46,11 +47,30 @@ closeAlert:(state)=>{
 },
 setCart:(state, {payload})=>{
 state.cart = payload
+},
+
+mutateCartQuantity:(state, {payload})=>{
+const cartItem = state.cart.find(item=>item.itemId === payload.id)
+
+if(cartItem){
+    if(payload.type === "increase"){
+        cartItem.quantity +=1
+    }
+
+    else{
+        cartItem.quantity -=1
+
+    }
+}
+
+},
+setBackUpCart:(state)=>{
+  state.cartBuckup = state.cart
 }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart, closeAlert,removeFromCart, setCart } = cartSlice.actions;
+export const { addToCart, closeAlert,removeFromCart, setCart, mutateCartQuantity, setBackUpCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

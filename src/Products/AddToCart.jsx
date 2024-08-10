@@ -43,14 +43,9 @@ export default function AddToCart({ product }) {
       ).toFixed(2) * value,
   };
 
-  const price =
-    product.price - (product.discountPercentage / 100) * product.price;
 
-  const totalPrice =
-    (
-      product.price -
-      (product.discountPercentage / 100) * product.price
-    ).toFixed(2) * value;
+
+
 
   const state = useSelector((state) => state.cartItem);
   const products = data?.find((product) => product.item === cartItem.item);
@@ -121,7 +116,7 @@ export default function AddToCart({ product }) {
           >
             <Typography>{product.title}</Typography>
             <Typography>
-              $
+              GHC
               {(
                 product.price -
                 (product.discountPercentage / 100) * product.price
@@ -225,7 +220,7 @@ export default function AddToCart({ product }) {
           >
             <Typography>{product.title}</Typography>
             <Typography>
-              $
+              GHC
               {(
                 product.price -
                 (product.discountPercentage / 100) * product.price

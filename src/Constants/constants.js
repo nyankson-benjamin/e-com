@@ -6,7 +6,7 @@ export const page = [
   {
     id: 1,
     name: "Products",
-    route: "products",
+    route: "",
   },
 
 ];

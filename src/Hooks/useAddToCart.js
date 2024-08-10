@@ -53,6 +53,7 @@ export default function useAddToCart(product) {
           unitPrice: price,
           totalPrice: totalPrice,
           itemId: product.id,
+          discountPercentage:product.discountPercentage
         };
         dispatch(addToCart({ data, quantity: value }));
         setTimeout(() => {
