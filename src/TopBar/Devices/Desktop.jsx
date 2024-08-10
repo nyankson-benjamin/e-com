@@ -21,6 +21,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
+
 
 function Desktop({categories, logOut}) {
   const [category, setCategory] = useState(null);
@@ -50,8 +52,7 @@ const {user} = useSelector(state=>state.userDetails)
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {/* MILES */}
         </Typography>
-        {/* <Searchitem search={search} handleChange={handleChange} /> */}
-        {isLoggedIn && <CartLength user={user} />}
+        {<CartLength user={user} />}
 
         {page?.map((page) => (
           <Button
@@ -173,6 +174,11 @@ const {user} = useSelector(state=>state.userDetails)
       </Stack>
     </Box>
   );
+}
+
+Desktop.propTypes={
+  categories:PropTypes.string,
+  logOut:PropTypes.func
 }
 
 export default Desktop;

@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { API } from "../Services/api";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart, setCart } from "../store/slice/cartSlice";
 
 export default function useCart() {
-  const [data, setData] = useState();
+
+
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [salesData, setSalesData] = useState();
   const [alerts, setAlerts] = useState({
@@ -14,6 +17,7 @@ export default function useCart() {
   });
   const navigate = useNavigate();
   const {user} = useSelector(state=>state.userDetails)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetch = async () => {
@@ -22,7 +26,10 @@ export default function useCart() {
         const response = await API.get("/cart/?id=" + user._id);
         setLoading(false);
         setData(response?.data.cart);
-      } catch (error) {}
+        dispatch(setCart(response?.data.cart))
+      } catch (error) {
+        setLoading(false)
+      }
     };
     fetch();
   }, []);

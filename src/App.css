@@ -1,6 +1,5 @@
 #root {
   margin: 0 auto;
-  text-align: center;
 
 }
 
@@ -110,4 +109,8 @@ body{
 
 .active-page:hover {
   background-color: white;
+}
+
+.primary-bg{
+background-color: #ffc801;
 }

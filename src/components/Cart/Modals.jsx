@@ -61,7 +61,7 @@ export default function Modals({
               alignItems: "center",
             }}
           >
-            <p>$ {ItemPrice * value}</p>
+            <p>GHC {ItemPrice * value}</p>
 
             <Box sx={{ display: "flex", flexDirection: "row" }}>
               <IconButton onClick={() => setValue(value - 1)}>

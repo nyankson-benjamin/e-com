@@ -13,14 +13,23 @@ import {
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useScreenWidth from "../../Hooks/useScreenWidth";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Header from "../typography/Header";
+import { removeFromCart  } from "../../store/slice/cartSlice";
 
 export default function CartTable({ data, cart, handleDelete }) {
   const [screenWidth] = useScreenWidth();
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
-
+const dispatch = useDispatch()
+  const buyItem = (id)=>{
+    if (isLoggedIn) {
+      navigate(`/cartItem/buy/${id}`);
+    } else {
+      localStorage.setItem("userPrevLocation", window.location)
+      navigate("/login");
+    }
+  }
   return (
     <div style={{ margin: "10px " }}>
       <Header text="My Cart"/>
@@ -52,7 +61,7 @@ export default function CartTable({ data, cart, handleDelete }) {
             {cart?.length >= 1 ? (
               <TableBody>
                 {cart?.map((cart, index) => (
-                  <TableRow key={cart._id}>
+                  <TableRow key={cart._id} key={cart._id}>
                     <TableCell>{index}</TableCell>
                     <TableCell>
                       <img src={cart.image} style={{ width: "30px" }} />
@@ -67,18 +76,12 @@ export default function CartTable({ data, cart, handleDelete }) {
                       {!cart.purchased ? <ButtonGroup variant="contained">
                         <Button className="w-32"
                           variant="contained"
-                          onClick={() => {
-                            if (isLoggedIn) {
-                              navigate(`/cartItem/buy/${cart._id}`);
-                            } else {
-                              navigate("/login");
-                            }
-                          }}
+                          onClick={() => buyItem(cart._id)}
                         >
                           BUY
                         </Button>
                         <IconButton
-                          onClick={() => handleDelete(cart._id, cart.item)}
+                          onClick={isLoggedIn ? () => handleDelete(cart._id, cart.item) : ()=> dispatch(removeFromCart(cart.itemId))}
                         >
                           <DeleteIcon />
                         </IconButton>
