@@ -34,8 +34,15 @@ export default function Cart() {
             {localItem?.map((item) => (
               <CartCard
                 key={item.itemId}
-                item={item}
+                itemId={item.itemId}
+                unitPrice={item.unitPrice}
                 handleDeleteItem={handleDelete}
+                deleteMsg={alerts.message}
+                quantity={item.quantity}
+                discountPercentage={item.discountPercentage}
+                item={item.item}
+                image={item.image}
+                _id={item._id}
               />
             ))}
             
