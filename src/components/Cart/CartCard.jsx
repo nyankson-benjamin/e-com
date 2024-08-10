@@ -8,13 +8,22 @@ import { mutateCartQuantity, removeFromCart } from "../../store/slice/cartSlice"
 import ModalComponent from "../modals/ModalComponent";
 import { useState } from "react";
 
-export default function CartCard({ item, handleDeleteItem, deleteMsg }) {
+export default function CartCard({ 
+  unitPrice,
+  quantity,
+  discountPercentage,
+  item,
+  itemId,
+  _id,
+  image,
+
+   handleDeleteItem, deleteMsg }) {
 const dispatch = useDispatch();
 const [open, setOpen] = useState(false)
 const isLoggedIn = useSelector((state) => state.auth.loggedIn)
 
 const handleMutateQuantity = (type)=>{
-dispatch(mutateCartQuantity({id:item.itemId, type}))
+dispatch(mutateCartQuantity({itemId, type}))
 }
 
 const handleToggleModal = ()=>{
@@ -23,13 +32,13 @@ const handleToggleModal = ()=>{
 
 const handleDelete = ()=>{
     if(isLoggedIn){
-handleDeleteItem(item._id, item.item)
-if(deleteMsg === item.item + " has been deleted successfully"){
- dispatch(removeFromCart(item.itemId))
+handleDeleteItem(_id, item)
+if(deleteMsg === item + " has been deleted successfully"){
+ dispatch(removeFromCart(itemId))
 
 }
     }else{
-        dispatch(removeFromCart(item.itemId))
+        dispatch(removeFromCart(itemId))
 
     }
          handleToggleModal()
@@ -41,8 +50,8 @@ const handleView = ()=>{
 }
 
 const getActualPrice = ()=>{
-   return (item.unitPrice -
-    (item.discountPercentage / 100) * item.unitPrice
+   return (unitPrice -
+    (discountPercentage / 100) * unitPrice
   ).toFixed(2)
 }
 
@@ -52,18 +61,18 @@ const getActualPrice = ()=>{
       <div className="flex justify-between cursor-pointer" onClick={handleView}>
       <div className="flex gap-3">
         <figure>
-          <img src={item.image} alt={item.item} className="w-28" />
+          <img src={image} alt={item} className="w-28" />
         </figure>
-        <h2>{item.item}</h2>
+        <h2>{item}</h2>
       </div>
 
       <div>
        <h2 className="font-bold">
-        { !isNaN(getActualPrice()) ?<s>GHC {item.unitPrice.toFixed(2)}</s> : <span>GHC {item.unitPrice.toFixed(2)}</span>}
+        { !isNaN(getActualPrice()) ?<s>GHC {unitPrice.toFixed(2)}</s> : <span>GHC {unitPrice.toFixed(2)}</span>}
        </h2>
        <div className="flex gap-4">
        <h2 className="">{(!isNaN(getActualPrice()) ?  `GHC ${getActualPrice()}` :"")}</h2>
-      {!isNaN(getActualPrice()) && <div className="bg-[#ffd231] p-0.5 rounded-lg">{item.discountPercentage}%</div>}
+      {!isNaN(getActualPrice()) && <div className="bg-[#ffd231] p-0.5 rounded-lg">{discountPercentage}%</div>}
        </div>
       </div>
       
@@ -77,8 +86,8 @@ const getActualPrice = ()=>{
             <p className="">Remove</p>
         </div>
 <div className="flex items-center gap-3">
-    <ButtonComponent text="" className={'w-3'} disabled={item.quantity <=1} handleSubmit={()=>handleMutateQuantity("decrease")}><Remove /></ButtonComponent>
-    {item.quantity}
+    <ButtonComponent text="" className={'w-3'} disabled={quantity <=1} handleSubmit={()=>handleMutateQuantity("decrease")}><Remove /></ButtonComponent>
+    {quantity}
     <ButtonComponent text="" className={'w-3'} handleSubmit={()=>handleMutateQuantity("increase")}><Add/></ButtonComponent>
 </div>
       </div>
@@ -93,14 +102,17 @@ const getActualPrice = ()=>{
 }
 
 CartCard.propTypes = {
-  item: {
+  
     image: PropTypes.string,
     item: PropTypes.string,
     quantity: PropTypes.number,
     unitPrice: PropTypes.number,
     totalPrice: PropTypes.number,
     purchased: PropTypes.bool,
-},
+    discountPercentage:PropTypes.number,
+    itemId:PropTypes.number,
+    _id:PropTypes.string,
 handleDeleteItem:PropTypes.func,
-deleteMsg:PropTypes.string
+deleteMsg:PropTypes.string,
+
 };

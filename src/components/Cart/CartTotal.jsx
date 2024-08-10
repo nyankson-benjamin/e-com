@@ -68,5 +68,5 @@ Checkout
 }
 
 CartTotal.propTypes = {
-  subtotal: PropTypes.number,
+  subtotal: PropTypes.string,
 };
