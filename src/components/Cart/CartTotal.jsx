@@ -5,12 +5,13 @@ import { useState } from "react";
 import SignIn from "../User/SignIn";
 import useLogin from "../../Hooks/useLogin";
 import { useSelector } from "react-redux";
-
+import { useLocation } from "react-router-dom";
 
 export default function CartTotal({ subtotal }) {
     const [open, setOpen] = useState(false)
     const [openCheckOut, setOpenCheckOut] = useState(false);
     const isLoggedIn = useSelector((state) => state.auth.loggedIn)
+    const location = useLocation();
 
     const [
         handleSubmit,
@@ -27,7 +28,7 @@ export default function CartTotal({ subtotal }) {
 
       const handleCheckOut = ()=>{
 if(!isLoggedIn){
-localStorage.setItem("userPrevLocation", window.location)
+localStorage.setItem("userPrevLocation", location.pathname)
   setOpen(true)
 }
 else{

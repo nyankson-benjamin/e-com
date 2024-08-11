@@ -2,20 +2,18 @@ import  { useEffect, useState } from "react";
 import { API } from "../Services/api";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart, setCart } from "../store/slice/cartSlice";
+import { setCart } from "../store/slice/cartSlice";
 
 export default function useCart() {
 
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [salesData, setSalesData] = useState();
   const [alerts, setAlerts] = useState({
     open: false,
     message: "",
     severity: "",
   });
-  const navigate = useNavigate();
   const {user} = useSelector(state=>state.userDetails)
   const dispatch = useDispatch()
 
@@ -46,44 +44,19 @@ dispatch(setCart(newCart))
         message: item + " has been deleted successfully",
         severity: "info",
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
 
 
   const handleBuy = async (id, price, item, image, quantity) => {
-    const buyDate = new Date();
-    const year = buyDate.getFullYear();
-    const month = buyDate.getMonth() + 1;
-    const day = buyDate.getDate();
-    const date = `${day}-${month}-${year}`;
-
-    const sales = { price, item, image, quantity, date };
-
-    const salesItem = salesData?.find((items) => items.item === item);
-
-    if (salesItem) {
+  
       await API.delete("/Cart/" + id);
       const newCart = data?.filter((cart) => cart._id !== id);
       setData(newCart);
-    } else {
-      try {
-        await API.post("/Sales", { ...sales });
-        setAlerts({
-          open: true,
-          message: "You have successfully buy the product",
-          severity: "info",
-        });
-
-        setTimeout(() => {
-          navigate("/cart");
-        }, 5000);
-
-        await API.delete("/Cart/" + id);
-        const newCart = data?.filter((cart) => cart.id !== id);
-        setData(newCart);
-      } catch (error) {}
-    }
+     
   };
 
   const handleCloseAlert = (event, reason) => {

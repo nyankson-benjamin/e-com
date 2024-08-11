@@ -26,6 +26,8 @@ const handleMutateQuantity = (type)=>{
 dispatch(mutateCartQuantity({itemId, type}))
 }
 
+
+
 const handleToggleModal = ()=>{
     setOpen(prev=> !prev)
 }
@@ -52,7 +54,7 @@ const handleView = ()=>{
 const getActualPrice = ()=>{
    return (unitPrice -
     (discountPercentage / 100) * unitPrice
-  ).toFixed(2)
+  )?.toFixed(2)
 }
 
 
@@ -68,7 +70,7 @@ const getActualPrice = ()=>{
 
       <div>
        <h2 className="font-bold">
-        { !isNaN(getActualPrice()) ?<s>GHC {unitPrice.toFixed(2)}</s> : <span>GHC {unitPrice.toFixed(2)}</span>}
+        { !isNaN(getActualPrice()) ?<s>GHC {unitPrice?.toFixed(2)}</s> : <span>GHC {unitPrice?.toFixed(2)}</span>}
        </h2>
        <div className="flex gap-4">
        <h2 className="">{(!isNaN(getActualPrice()) ?  `GHC ${getActualPrice()}` :"")}</h2>

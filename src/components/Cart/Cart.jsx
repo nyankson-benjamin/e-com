@@ -7,10 +7,9 @@ import { Grid } from "@mui/material";
 import EmptyCart from "./EmptyCart";
 
 export default function Cart() {
-  const [data, loading, handleDelete, handleBuy, alerts, handleCloseAlert] =
+  const [ , loading, handleDelete, , alerts, handleCloseAlert] =
     useCart();
 
-  const isLoggedIn = useSelector((state) => state.auth.loggedIn);
   const { cart: localItem } = useSelector((state) => state.cartItem);
  
 

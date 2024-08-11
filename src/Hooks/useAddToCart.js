@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { API } from "../Services/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, closeAlert } from "../store/slice/cartSlice";
 
@@ -10,11 +10,12 @@ export default function useAddToCart(product) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const location = window.location.href;
   const isLoggedIn = useSelector((state) => state.auth.loggedIn);
   const cart = useSelector((state) => state.cartItem);
   const { user } = useSelector((state) => state.userDetails);
   const [alert, setAlert] = useState(cart.alert);
+    const location = useLocation();
+
   //TODO: refactor the alert system
   useEffect(() => {
     if (value < 0) {
@@ -43,7 +44,7 @@ export default function useAddToCart(product) {
   const handleAddToCart = async () => {
     try {
       if (!isLoggedIn) {
-        localStorage.setItem("userPrevLocation", location);
+        localStorage.setItem("userPrevLocation", location.pathname);
 
         const data = {
           item: product.title,
