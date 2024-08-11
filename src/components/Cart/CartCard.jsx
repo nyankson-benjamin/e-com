@@ -72,7 +72,7 @@ const getActualPrice = ()=>{
        </h2>
        <div className="flex gap-4">
        <h2 className="">{(!isNaN(getActualPrice()) ?  `GHC ${getActualPrice()}` :"")}</h2>
-      {!isNaN(getActualPrice()) && <div className="bg-[#ffd231] p-0.5 rounded-lg">{discountPercentage}%</div>}
+      {!isNaN(getActualPrice()) && <div className="bg-[#ffd231] p-0.5 rounded-lg">-{discountPercentage}%</div>}
        </div>
       </div>
       

@@ -69,7 +69,7 @@ export default function AddToCart({ product }) {
         handleCloseAlert={handleCloseAlert}
       />
 
-      <h2 className="font-bold py-5 bg-white">ADD TO CART</h2>
+      <h2 className="font-bold py-5 bg-white text-center">ADD TO CART</h2>
       {screenWidth < 600 ? (
         <Box className="bg-white">
           {" "}

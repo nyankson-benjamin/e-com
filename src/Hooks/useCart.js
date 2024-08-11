@@ -40,7 +40,7 @@ export default function useCart() {
 
       const newCart = data?.filter((cart) => cart._id !== id);
       setData(newCart);
-
+dispatch(setCart(newCart))
       setAlerts({
         open: true,
         message: item + " has been deleted successfully",

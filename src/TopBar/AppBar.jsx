@@ -46,7 +46,9 @@ dispatch(setUser({}))
 dispatch(setAlert(["success", "Logout successfull", true]))
 dispatch(setCart(cartBackUp))
     setTimeout(() => {
-      navigate("/login");
+      if(!isLoggedIn){
+        navigate("/login");
+      }
     }, 3000);
 
 }
