@@ -10,7 +10,7 @@ import {
   ButtonGroup,
   IconButton,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useScreenWidth from "../../Hooks/useScreenWidth";
 import { useSelector, useDispatch } from "react-redux";
@@ -20,13 +20,15 @@ import { removeFromCart  } from "../../store/slice/cartSlice";
 export default function CartTable({ data, cart, handleDelete }) {
   const [screenWidth] = useScreenWidth();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
 const dispatch = useDispatch()
   const buyItem = (id)=>{
     if (isLoggedIn) {
       navigate(`/cartItem/buy/${id}`);
     } else {
-      localStorage.setItem("userPrevLocation", window.location)
+      localStorage.setItem("userPrevLocation", location.pathname)
       navigate("/login");
     }
   }

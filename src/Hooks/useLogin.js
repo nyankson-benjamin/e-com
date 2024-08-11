@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { useSelector } from "react-redux";
 import { removeFromCart, setBackUpCart } from "../store/slice/cartSlice";
 
+
 export default function useLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -58,7 +59,7 @@ if(res.data.message==="Process completed"){
   }, 10);
 }
 } catch (error) {
-  
+  error.response.data.message
 }
   }
 
@@ -86,7 +87,7 @@ console.log("cart", cartItem)
 
       setTimeout(() => {
         if (location) {
-          navigate(`${location.slice(21)}`);
+          navigate(`${location}`);
           localStorage.removeItem("userPrevLocation");
         } else {
           navigate("/");
