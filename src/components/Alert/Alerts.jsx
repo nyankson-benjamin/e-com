@@ -10,6 +10,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 // export default function Alerts({ openAlert, message, severity, handleCloseAlert }) {
 export default function Alerts({ alert, handleCloseAlert }) {
   useEffect(() => {
+    console.log();
+    
   });
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>

@@ -69,13 +69,12 @@ export default function useAddToCart(product) {
           unitPrice: price,
           totalPrice: totalPrice,
           itemId: product.id,
+          discountPercentage:product.discountPercentage
         });
-        if (response.data.message === "update price") {
-          setOpen(true);
-        } else {
+       
           setAlert({
             open: true,
-            message: `${product.title}  has been successfully added to your cart`,
+            message: response.data.message,
             severity: "success",
           });
 
@@ -83,7 +82,7 @@ export default function useAddToCart(product) {
             navigate("/cart");
           }, 3000);
         }
-      }
+      
     } catch (error) {
       if (error.message === "Network Error") {
         setAlert({
@@ -94,7 +93,7 @@ export default function useAddToCart(product) {
       } else {
         setAlert({
           open: true,
-          message: error?.response.data,
+          message: error?.response.data.message,
           severity: "error",
         });
       }

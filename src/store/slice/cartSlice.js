@@ -50,7 +50,7 @@ state.cart = payload
 },
 
 mutateCartQuantity:(state, {payload})=>{
-const cartItem = state.cart.find(item=>item.itemId === payload.id)
+const cartItem = state.cart.find(item=>item.itemId === payload.itemId)
 
 if(cartItem){
     if(payload.type === "increase"){
