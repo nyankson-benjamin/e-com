@@ -33,6 +33,7 @@ function ProductCard({ product, isLoading,  }) {
                 }}
                 className="bigImage"
                 title={product.title}
+                loading="lazy"
               />
             </Box>
             <Box sx={{ bgcolor: "#ffc801", color:'white',  }}>

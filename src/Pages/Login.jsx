@@ -12,7 +12,7 @@ export default function Login() {
     disable,
     handleEmail,
     handlePassword,
-    handleLogOut,
+    ,
     alert,
     handleCloseAlert,
     isLoading

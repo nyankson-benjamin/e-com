@@ -15,13 +15,12 @@ import { setAlert } from "../store/slice/alertSlice";
 import { setUser } from "../store/slice/userSlice";
 import Alerts from "../components/Alert/Alerts";
 import {  setCart } from "../store/slice/cartSlice";
-
 import Desktop from "./Devices/Desktop";
 import Mobile from "./Devices/Mobile";
 import Searchitem from "../components/Searchitem";
 import { useEffect } from "react";
-
 import PropTypes from "prop-types";
+import useCart from "../Hooks/useCart";
 
 AppsBar.propTypes={
 search: PropTypes.string,
@@ -36,6 +35,16 @@ export default function AppsBar({
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
   const cartBackUp = useSelector((state) => state.cartItem.cartBuckup)
 
+  const [
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    fetch
+  ] = useCart()
   const dispatch = useDispatch()
  const beforeLoginRoutes = []
  const afterLogin = ["/login", "/signup", "/confirm", "/reset", "/forgot"]
@@ -76,6 +85,10 @@ useEffect(()=>{
     }
   })
   },[afterLogin, isLoggedIn, navigate, route])
+
+  useEffect(()=>{
+    fetch()
+  },[])
 return (
     <Stack>
       <AppBar

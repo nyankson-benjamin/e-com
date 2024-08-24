@@ -18,18 +18,20 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function CartLength({ user }) {
   const navigate = useNavigate();
-  const [data] = useCart();
-  const {cart} = useSelector(state=>state.cartItem)
-  const isLoggedIn = useSelector((state) => state.auth.loggedIn)
+  // const [data] = useCart();
+  // const {cart} = useSelector(state=>state.cartItem)
+  // const isLoggedIn = useSelector((state) => state.auth.loggedIn)
+  const { cart: localItem } = useSelector((state) => state.cartItem);
+console.log("cartt", localItem)
 
   return (
     <IconButton
       aria-label="cart"
       onClick={() => navigate("/cart")}
       sx={{ marginLeft: "30px" }}
-      title={isLoggedIn ? `${data?.length} items` : `${cart?.length} items`}
+      title={`${localItem?.length} items`}
     >
-      <StyledBadge badgeContent={isLoggedIn ? data?.length : cart?.length} color="secondary">
+      <StyledBadge badgeContent={localItem?.length} color="secondary">
         <ShoppingCartIcon sx={{ color: "white" }} />
       </StyledBadge>
     </IconButton>

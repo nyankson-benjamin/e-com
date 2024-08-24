@@ -59,6 +59,7 @@ export default function useAddToCart(product) {
         dispatch(addToCart({ data, quantity: value }));
         setTimeout(() => {
           dispatch(closeAlert());
+          navigate("/cart");
         }, 3000);
 
       } else {

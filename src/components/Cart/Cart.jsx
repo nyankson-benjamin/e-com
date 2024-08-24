@@ -7,7 +7,7 @@ import { Grid } from "@mui/material";
 import EmptyCart from "./EmptyCart";
 
 export default function Cart() {
-  const [ , loading, handleDelete, , alerts, handleCloseAlert] =
+  const [ , loading, handleDelete, , alerts, handleCloseAlert, puchaseItem] =
     useCart();
 
   const { cart: localItem } = useSelector((state) => state.cartItem);
@@ -50,7 +50,7 @@ export default function Cart() {
 
         {sum > 0 && (
           <Grid item xs={10} lg={3} md={4}>
-            <CartTotal subtotal={sum.toFixed(2)} />
+            <CartTotal puchaseItem={puchaseItem}/>
           </Grid>
         )}
       </Grid>
