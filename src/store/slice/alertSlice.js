@@ -19,10 +19,14 @@ export const alertSlice = createSlice({
         state.open=false
       }, 3000);
     },
+
+    hideAlert:(state)=>{
+      state.open=false;
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setAlert } = alertSlice.actions;
+export const { setAlert, hideAlert } = alertSlice.actions;
 
 export default alertSlice.reducer;

@@ -87,7 +87,7 @@ return (
           textTransform: "capitalize",
         }}
       >
-              <Alerts alert={alert} handleCloseAlert={()=>handleCloseAlert()}/>
+              {/* <Alerts alert={alert} handleCloseAlert={()=>handleCloseAlert()}/> */}
 
         <Toolbar>
           <Box sx={{ display: "flex", alignItems: "center" }}>

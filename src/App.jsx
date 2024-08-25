@@ -21,9 +21,10 @@ import Categories from "./ProductCategories/Categories"
 import { DUMMy_API } from "./Services/api";
 import {useEffect, useState} from "react"
 import AppsBar from "./TopBar/AppBar";
-import {  useDispatch } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import {updateSearchItem} from "./store/slice/searchSlice";
-
+import Alerts from "./components/Alert/Alerts";
+import { hideAlert } from "./store/slice/alertSlice";
 function App() {
   const [filter, setFilter] = useState("");
 const dispatch = useDispatch();
@@ -50,9 +51,13 @@ const dispatch = useDispatch();
     getProductCategories()
   },[])
 
+  const alert = useSelector(state=>state.alert)
+
+
   return (
     <div className="App">
       <AppsBar search={filter} handleChange={handleFilterChange}/>
+      <Alerts alert={alert} handleCloseAlert={()=>dispatch(hideAlert())}/>
       <Routes>
         <Route exact path="/" element={<Products />} />
         <Route path="/login" element={<Login />} />

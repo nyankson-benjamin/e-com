@@ -62,6 +62,7 @@ export default function useAddToCart(product) {
         }, 3000);
 
       } else {
+        setDisable(true)
         const response = await API.post("/addtocart", {
           item: product.title,
           image: product.thumbnail,
@@ -72,6 +73,7 @@ export default function useAddToCart(product) {
           itemId: product.id,
           discountPercentage:product.discountPercentage
         });
+        setDisable(false)
        
           setAlert({
             open: true,
@@ -98,6 +100,7 @@ export default function useAddToCart(product) {
           severity: "error",
         });
       }
+      setDisable(false)
     }
 
     setTimeout(() => {
