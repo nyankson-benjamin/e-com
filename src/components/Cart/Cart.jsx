@@ -17,7 +17,7 @@ export default function Cart() {
   const { cart: localItem } = useSelector((state) => state.cartItem);
  const [screenWidth]= useScreenWidth()
  const navigate = useNavigate();
-
+window.document.title="Cart | E-Shop"
   let sum = 0;
   
   for (const element of localItem) {

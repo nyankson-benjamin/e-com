@@ -1,22 +1,26 @@
 import useGetProductDetails from "../FetchingHooks/useGetProductDetails";
 import RelatedProducts from "./RelatedProducts";
-import { Box,  } from "@mui/material";
-import Header from "../components/typography/Header"
+import { Box } from "@mui/material";
+import Header from "../components/typography/Header";
 
 import ProductDetail from "./ProductDetail";
 function ProductPage() {
-  const {data, isLoading, loadingRelated,related} = useGetProductDetails();
-  
+  const { data, isLoading, loadingRelated, related } = useGetProductDetails();
 
+  const title = data?.title ? data?.title + " | E-Shop" : "E-Shop"
+
+  window.document.title = isLoading ? "Loading" : title;
 
   return (
-    <div >
-     { !isLoading && data && <Header text={data?.title}/>}
-      {
-        isLoading && <div className="w-[300px] h-[300px] flex justify-center items-center"><p>Loading...</p></div> 
-      }
+    <div>
+      {!isLoading && data && <Header text={data?.title} />}
+      {isLoading && (
+        <div className="w-[300px] h-[300px] flex justify-center items-center">
+          <p>Loading...</p>
+        </div>
+      )}
       {!isLoading && data.title && (
-        <Box sx={{mb:20,}} className="mt-5">
+        <Box sx={{ mb: 20 }} className="mt-5">
           <Box
             sx={{
               // height: "200px",
@@ -24,23 +28,23 @@ function ProductPage() {
               justifyContent: "center",
               // flexDirection: "column",
               // mt: 5,
-  
             }}
           >
             <ProductDetail product={data} />
           </Box>
 
-          <Box >
-            {related?.length>1 && (
+          <Box>
+            {related?.length > 1 && (
               <>
-                <h3 className="font-bold py-5 bg-white mb-5 text-center">RELATED PRODUCTS</h3>
+                <h3 className="font-bold py-5 bg-white mb-5 text-center">
+                  RELATED PRODUCTS
+                </h3>
                 <RelatedProducts related={related} loading={loadingRelated} />
               </>
             )}
           </Box>
         </Box>
       )}
-      
     </div>
   );
 }

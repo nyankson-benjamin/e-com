@@ -8,7 +8,7 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import { page, } from "../../Constants/constants";
@@ -22,17 +22,20 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-
+import { useLocation } from "react-router-dom";
 
 function Desktop({categories, logOut}) {
   const [category, setCategory] = useState(null);
   const [dashBoarditem, setDashBoarditem] = useState(null);
+  const location = useLocation();
 
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
 
 const {user} = useSelector(state=>state.userDetails)
  
+useEffect(()=>{
+setCategory(null)},[location])
   return (
     <Box
       sx={{
