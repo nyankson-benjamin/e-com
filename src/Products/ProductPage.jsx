@@ -5,7 +5,7 @@ import Header from "../components/typography/Header"
 
 import ProductDetail from "./ProductDetail";
 function ProductPage() {
-  const {data, isLoading, relatedError, loadingRelated,related} = useGetProductDetails();
+  const {data, isLoading, loadingRelated,related} = useGetProductDetails();
   
 
 
@@ -33,7 +33,7 @@ function ProductPage() {
           <Box >
             {related?.length>1 && (
               <>
-                <h3 className="font-bold py-5 bg-white mb-5">RELATED PRODUCTS</h3>
+                <h3 className="font-bold py-5 bg-white mb-5 text-center">RELATED PRODUCTS</h3>
                 <RelatedProducts related={related} loading={loadingRelated} />
               </>
             )}

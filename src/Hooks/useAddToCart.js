@@ -3,17 +3,15 @@ import { API } from "../Services/api";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, closeAlert } from "../store/slice/cartSlice";
+import { setAlert as setAlerts } from "../store/slice/alertSlice";
 
 export default function useAddToCart(product) {
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(product.quantity ?? 1);
   const [disable, setDisable] = useState(true);
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.loggedIn);
-  const cart = useSelector((state) => state.cartItem);
   const { user } = useSelector((state) => state.userDetails);
-  const [alert, setAlert] = useState(cart.alert);
     const location = useLocation();
 
   //TODO: refactor the alert system
@@ -32,12 +30,12 @@ export default function useAddToCart(product) {
  
 
   const price =
-    product.price - (product.discountPercentage / 100) * product.price;
+    product?.price - (product?.discountPercentage / 100) * product?.price;
 
   const totalPrice =
     (
-      product.price -
-      (product.discountPercentage / 100) * product.price
+      product?.price -
+      (product?.discountPercentage / 100) * product?.price
     ).toFixed(2) * value;
 
 
@@ -48,7 +46,7 @@ export default function useAddToCart(product) {
 
         const data = {
           item: product.title,
-          image: product.thumbnail,
+          image: product.images.length ? product.images[0] : product.thumbnail,
           quantity: value,
           email: user.email,
           unitPrice: price,
@@ -57,6 +55,10 @@ export default function useAddToCart(product) {
           discountPercentage:product.discountPercentage
         };
         dispatch(addToCart({ data, quantity: value }));
+        dispatch(setAlerts(["success", "item added to cart", true]))
+        setTimeout(() => {
+          navigate("/cart");
+        }, 3000);
         setTimeout(() => {
           dispatch(closeAlert());
         }, 3000);
@@ -74,13 +76,8 @@ export default function useAddToCart(product) {
           discountPercentage:product.discountPercentage
         });
         setDisable(false)
-       
-          setAlert({
-            open: true,
-            message: response.data.message,
-            severity: "success",
-          });
 
+          dispatch(setAlerts(["success", response.data.message, true]))
           setTimeout(() => {
             navigate("/cart");
           }, 3000);
@@ -88,31 +85,18 @@ export default function useAddToCart(product) {
       
     } catch (error) {
       if (error.message === "Network Error") {
-        setAlert({
-          open: true,
-          message: `There was an error adding to cart`,
-          severity: "error",
-        });
+  
+        dispatch(setAlerts(["error", "There was an error adding to cart", true]))
       } else {
-        setAlert({
-          open: true,
-          message: error?.response.data.message,
-          severity: "error",
-        });
+
+        dispatch(setAlerts(["error", error?.response.data.message, true]))
       }
       setDisable(false)
     }
 
-    setTimeout(() => {
-      setAlert({
-        open: false,
-        message: ``,
-        severity: "",
-      });
-    }, 3000);
   };
 
-  const handleClose = () => setOpen(false);
+  
   const Update = async (price, value,) => {
     const quantity = value;
     const totalPrice = price;
@@ -120,25 +104,10 @@ export default function useAddToCart(product) {
     await API.put(`Cart/${3}`, { ...data });
   };
 
-  const handleCloseAlert = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setAlert({
-      open: false,
-      message: "",
-      severity: "",
-    });
-  };
 
   return {
     handleAddToCart,
-    handleClose,
     Update,
-    handleCloseAlert,
-    alert,
-    open,
     disable,
     value,
     setValue,
