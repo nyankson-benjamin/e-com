@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import PropTypes from 'prop-types';
-
+ 
 export default function AuthButton({ disable, handleSubmit, isLoading, text="Submit" }) {
   return (
     <div>
