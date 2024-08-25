@@ -15,9 +15,12 @@ export default function useCart() {
     severity: "",
   });
   const {user} = useSelector(state=>state.userDetails)
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
+   if(isLoggedIn){
     const fetch = async () => {
       try {
         setLoading(true);
@@ -30,6 +33,7 @@ export default function useCart() {
       }
     };
     fetch();
+   }
   }, []);
 
   const handleDelete = async (id, item) => {

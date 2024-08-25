@@ -24,7 +24,7 @@ ButtonComponent.propTypes={
     text:PropTypes.string,
     disabled:PropTypes.bool,
     children:PropTypes.node,
-    handleSubmit: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func,
     className:PropTypes.string
 
 }
