@@ -13,7 +13,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { updateLoginState } from "../store/slice/authSlice";
 import { setAlert } from "../store/slice/alertSlice";
 import { setUser } from "../store/slice/userSlice";
-import Alerts from "../components/Alert/Alerts";
 import {  setCart } from "../store/slice/cartSlice";
 
 import Desktop from "./Devices/Desktop";
@@ -32,7 +31,6 @@ export default function AppsBar({
   handleChange,
 }) {
   const [screenWidth] = useScreenWidth();
-  const alert = useSelector((state) => state.alert)
   const isLoggedIn = useSelector((state) => state.auth.loggedIn)
   const cartBackUp = useSelector((state) => state.cartItem.cartBuckup)
 
@@ -50,11 +48,6 @@ dispatch(setCart(cartBackUp))
         navigate("/login");
       }
     }, 3000);
-
-}
-
-const handleCloseAlert = ()=>{
-dispatch(setAlert(["success", "Logout successfull", false]))
 
 }
 
@@ -87,7 +80,6 @@ return (
           textTransform: "capitalize",
         }}
       >
-              {/* <Alerts alert={alert} handleCloseAlert={()=>handleCloseAlert()}/> */}
 
         <Toolbar>
           <Box sx={{ display: "flex", alignItems: "center" }}>

@@ -16,7 +16,8 @@ export default function Products() {
 
   const {searchItem} = useSelector(state=>state.searchItem)
   const pageCount = Math.ceil(count / itemsPerPage);
-  
+  window.document.title="Home | E-Shop"
+
  
 
   useEffect(()=>{

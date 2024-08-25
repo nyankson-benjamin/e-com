@@ -5,7 +5,6 @@ import Products from "./Pages/Products";
 import Blogs from "./Pages/Blogs";
 import About from "./Pages/About";
 import ProductPage from "./Products/ProductPage";
-import BuyProduct from "./Products/BuyProduct";
 import Cart from "./components/Cart/Cart";
 import Buy from "./components/Cart/Buy";
 import Signup from "./Pages/Signup";
@@ -66,7 +65,6 @@ const dispatch = useDispatch();
 
         <Route path="/categories/:category" element={<Categories />} />
         <Route path="/productPage/:title" element={<ProductPage />} />
-        <Route path="/BuyProduct/:title" element={<BuyProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/cartItem/buy/:id" element={<Buy />} />
         <Route path="/signup" element={<Signup />} />

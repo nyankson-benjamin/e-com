@@ -8,24 +8,25 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import { useState, } from "react";
+import { useState,useEffect } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector } from "react-redux";
-
 import { page, } from "../../Constants/constants";
 import {  useNavigate } from "react-router-dom";
-
-
 import CartLength from "../../components/Cart/CartLength";
 import PersonIcon from "@mui/icons-material/Person";
-
 import LogoutIcon from "@mui/icons-material/Logout";
 import Alerts from "../../components/Alert/Alerts";
+import { useLocation } from "react-router-dom";
+
+
 function Mobile({ categories, logOut }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [category, setCategory] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [alert, setAlert] = useState({
     open: false,
     message: "",
@@ -51,6 +52,9 @@ function Mobile({ categories, logOut }) {
       severity: "",
     });
   };
+
+  useEffect(()=>{
+    setCategory(null)},[location])
   return (
     <>
       <Alerts alert={alert} handleCloseAlert={handleCloseAlert} />

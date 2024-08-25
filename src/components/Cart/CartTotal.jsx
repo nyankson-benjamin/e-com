@@ -36,12 +36,12 @@ export default function CartTotal({ subtotal }) {
     }
   }, [userEmail]);
   return (
-    <section className=" max-h-64 bg-white shadow-sm p-3 flex flex-col gap-6">
+    <section className=" max-h-64 bg-white shadow-sm p-3 flex flex-col gap-6 font-bold">
       <h2 className="border-b-[1px] pb-3">CART SUMMARY</h2>
 
       <div className="border-b-[1px] flex justify-between pb-3">
-        <h2>Subtotal</h2>
-        <h2 className="font-bold">GHC {subtotal}</h2>
+        <h2>TOTAL</h2>
+        <h2 className="">GHC {subtotal}</h2>
       </div>
 
       {!isLoggedIn ? (
